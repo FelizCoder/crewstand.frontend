@@ -1,81 +1,66 @@
-import { debug } from "console";
-import { ActuatorEnum, getAllV1ActuatorsGet, SolenoidValve, ProportionalValve, Pump, client } from "../api";
+"use client";
+
+import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "../api";
 import { Switch, Slider } from "antd";
+import { getActuatorsList, handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./handleSolenoidChange";
+import { useState, useEffect } from "react";
 
-client.setConfig({
-    baseURL: "http://localhost:5000"
-})
+export default function Page() {
+  console.debug('Actuators Page');
+  let [actuators, setActuators] = useState<GetAllV1ActuatorsGetResponse>([]);
 
-export default async function Page() {
-    debug('Actuators Page');	
-    const response = await getAllV1ActuatorsGet();
-    const actuators = response.data ? response.data : [];
-    debug(JSON.stringify(actuators));
+  useEffect(() => {
+    listActuators();
 
-    return (
-        <div>
-            <h1>Actuators Page</h1>
-            {actuators.map(actuator => (
-                <div key={actuator.type + String(actuator.id)}>
-                    <h2>{actuator.type} - ID: {actuator.id}</h2>
-                    {isSolenoidValve(actuator) && (
-                        <Switch
-                            checked={actuator.open}
-                            // onChange={(checked) => handleSolenoidChange(actuator.id, checked)}
-                        />
-                    )}
-                    {isProportionalValve(actuator) && (
-                        <Slider
-                            defaultValue={actuator.position}
-                            // onChange={(value) => handleProportionalValveChange(actuator.id, value)}
-                            min={0}
-                            max={100}
-                        />
-                    )}
-                    {isPump(actuator) && (
-                        <Switch
-                            checked={actuator.running}
-                            // onChange={(checked) => handlePumpChange(actuator.id, checked)}
-                        />
-                    )}
-                </div>
-            ))}
+    async function listActuators() {
+      console.debug("Fetching Actuators");
+      const actuators = await getActuatorsList();
+      setActuators(actuators);
+      console.debug("Got Actuators: \n" + JSON.stringify(actuators));
+    }
+  }, []);
+
+
+  return (
+    <div>
+      <h1>Actuators Page</h1>
+      {actuators.map(actuator => (
+        <div key={actuator.type + String(actuator.id)}>
+          <h2>{actuator.type} - ID: {actuator.id}</h2>
+          {isSolenoidValve(actuator) && (
+            <Switch
+              defaultChecked={actuator.open}
+              onClick={(checked) => handleSolenoidChange(actuator.id, checked)}
+            />
+          )}
+          {isProportionalValve(actuator) && (
+            <Slider
+              defaultValue={actuator.position}
+              onChangeComplete={(value) => handleProportionalValveChange(actuator.id, value)}
+              min={0}
+              max={100}
+            />
+          )}
+          {isPump(actuator) && (
+            <Switch
+              defaultChecked={actuator.running}
+              onClick={(checked) => handlePumpChange(actuator.id, checked)}
+            />
+          )}
         </div>
-    );
+      ))}
+    </div>
+  );
 }
 
-// async function handleSolenoidChange(id: number, open: boolean) {
-//     const config = new Configuration({
-//         basePath: "http://localhost:5000"
-//     });
-//     const api = new ActuatorsApi(config);
-//     await api.updateSolenoidV1ActuatorsIdPut({ id, open });
-// }
-
-// async function handleProportionalValveChange(id: number, position: number) {
-//     const config = new Configuration({
-//         basePath: "http://localhost:5000"
-//     });
-//     const api = new ActuatorsApi(config);
-//     await api.updateProportionalValveV1ActuatorsIdPut({ id, position });
-// }
-
-// async function handlePumpChange(id: number, running: boolean) {
-//     const config = new Configuration({
-//         basePath: "http://localhost:5000"
-//     });
-//     const api = new ActuatorsApi(config);
-//     await api.updatePumpV1ActuatorsIdPut({ id, running });
-//}
-
 function isSolenoidValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is SolenoidValve {
-    return actuator.type === ActuatorEnum.SOLENOID_VALVE;
+  return actuator.type === ActuatorEnum.SOLENOID_VALVE;
 }
 
 function isProportionalValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is ProportionalValve {
-    return actuator.type === ActuatorEnum.PROPORTIONAL_VALVE;
+  return actuator.type === ActuatorEnum.PROPORTIONAL_VALVE;
 }
 
 function isPump(actuator: SolenoidValve | ProportionalValve | Pump): actuator is Pump {
-    return actuator.type === ActuatorEnum.PUMP;
+  return actuator.type === ActuatorEnum.PUMP;
 }

@@ -12,6 +12,7 @@ import {
   Slider,
   Switch,
   ConfigProvider,
+  Space,
 } from "antd";
 import theme from "./themeConfig";
 
@@ -41,7 +42,10 @@ const HomePage = () => (
             />
           </Form.Item>
           <Form.Item label="Switch">
-            <Switch defaultChecked />
+            <Space>
+              <Switch defaultChecked={true} onChange={() => console.log("foo")} />
+              <Switch defaultChecked={false} onChange={() => console.log("bar")} />
+            </Space>
           </Form.Item>
           <Form.Item label="Slider">
             <Slider defaultValue={70} />
