@@ -3,6 +3,7 @@ import { ActuatorEnum, client, getAllV1ActuatorsGet, setStateV1ActuatorsProporti
 
 client.setConfig({
   baseURL: process.env.BACKEND_URI,
+  proxy: false,
 });
 
 export async function handleSolenoidChange(id: number, open: boolean) {
@@ -41,8 +42,11 @@ export async function handlePumpChange(id: number, checked: boolean) {
   console.debug("Server Response: \n" + JSON.stringify(response.data));
 }
 export async function getActuatorsList() {
-  console.debug("Fetch Actuators from" + process.env.BACKEND_URI);
+  console.debug("Fetch Actuators from " + process.env.BACKEND_URI);
   const response = await getAllV1ActuatorsGet();
+  console.debug("Server Request: \n" + JSON.stringify(response.config));
+  console.debug("Server Response Status: " + response.status);
+  console.debug("Server Response Error: \n" + JSON.stringify(response.error));
   const actuators = response.data ? response.data : [];
   console.debug("Got Actuators List:\n" + JSON.stringify(actuators));
   return actuators;
