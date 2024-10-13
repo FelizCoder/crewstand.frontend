@@ -41,7 +41,7 @@ export async function handlePumpChange(id: number, checked: boolean) {
   console.debug("Server Response: \n" + JSON.stringify(response.data));
 }
 export async function getActuatorsList() {
-  console.debug("Fetch Actuators");
+  console.debug("Fetch Actuators from" + process.env.BACKEND_URI);
   const response = await getAllV1ActuatorsGet();
   const actuators = response.data ? response.data : [];
   console.debug("Got Actuators List:\n" + JSON.stringify(actuators));
