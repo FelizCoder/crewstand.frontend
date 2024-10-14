@@ -1,81 +1,66 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { SmileFilled } from "@ant-design/icons";
-import {
-  Button,
-  DatePicker,
-  Form,
-  InputNumber,
-  Select,
-  Slider,
-  Switch,
-  ConfigProvider,
-  Space,
-} from "antd";
-import theme from "./themeConfig";
+import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
+import { Switch, Slider } from "antd";
+import { getActuatorsList, handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./actuators/apiCalls";
+import { useState, useEffect } from "react";
 
-const HomePage = () => (
-  <ConfigProvider theme={theme}>
-    <div style={{ padding: 100, height: "100vh" }}>
-      <div className="text-center mb-5">
-        <Link href="#" className="logo mr-0">
-          <SmileFilled style={{ fontSize: 48 }} />
-        </Link>
-        <p className="mb-0 mt-3 text-disabled">Welcome to the world !</p>
-      </div>
-      <div>
-        <Form
-          layout="horizontal"
-          size={"large"}
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 8 }}
-        >
-          <Form.Item label="Input Number">
-            <InputNumber
-              min={1}
-              max={10}
-              style={{ width: 100 }}
-              defaultValue={3}
-              name="inputNumber"
+export default function Page() {
+  console.debug('Actuators Page');
+  let [actuators, setActuators] = useState<GetAllV1ActuatorsGetResponse>([]);
+
+  useEffect(() => {
+    listActuators();
+
+    async function listActuators() {
+      console.debug("Fetching Actuators");
+      const actuators = await getActuatorsList();
+      setActuators(actuators);
+      console.debug("Got Actuators: \n" + JSON.stringify(actuators));
+    }
+  }, []);
+
+
+  return (
+    <div>
+      <h1>Actuators Page</h1>
+      {actuators.map(actuator => (
+        <div key={actuator.type + String(actuator.id)}>
+          <h2>{actuator.type} - ID: {actuator.id}</h2>
+          {isSolenoidValve(actuator) && (
+            <Switch
+              defaultChecked={actuator.open}
+              onClick={(checked) => handleSolenoidChange(actuator.id, checked)}
             />
-          </Form.Item>
-          <Form.Item label="Switch">
-            <Space>
-              <Switch defaultChecked={true} onChange={() => console.log("foo")} />
-              <Switch defaultChecked={false} onChange={() => console.log("bar")} />
-            </Space>
-          </Form.Item>
-          <Form.Item label="Slider">
-            <Slider defaultValue={70} />
-          </Form.Item>
-          <Form.Item label="Select">
-            <Select
-              defaultValue="lucy"
-              style={{ width: 192 }}
-              options={[
-                { value: "jack", label: "Jack" },
-                { value: "lucy", label: "Lucy" },
-                { value: "Yiminghe", label: "yiminghe" },
-                { value: "lijianan", label: "lijianan" },
-                { value: "disabled", label: "Disabled", disabled: true },
-              ]}
+          )}
+          {isProportionalValve(actuator) && (
+            <Slider
+              defaultValue={actuator.position}
+              onChangeComplete={(value) => handleProportionalValveChange(actuator.id, value)}
+              min={0}
+              max={100}
             />
-          </Form.Item>
-          <Form.Item label="DatePicker">
-            <DatePicker showTime />
-          </Form.Item>
-          <Form.Item style={{ marginTop: 48 }} wrapperCol={{ offset: 8 }}>
-            <Button type="primary" htmlType="submit">
-              OK
-            </Button>
-            <Button style={{ marginLeft: 8 }}>Cancel</Button>
-          </Form.Item>
-        </Form>
-      </div>
+          )}
+          {isPump(actuator) && (
+            <Switch
+              defaultChecked={actuator.running}
+              onClick={(checked) => handlePumpChange(actuator.id, checked)}
+            />
+          )}
+        </div>
+      ))}
     </div>
-  </ConfigProvider>
-);
+  );
+}
 
-export default HomePage;
+function isSolenoidValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is SolenoidValve {
+  return actuator.type === ActuatorEnum.SOLENOID_VALVE;
+}
+
+function isProportionalValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is ProportionalValve {
+  return actuator.type === ActuatorEnum.PROPORTIONAL_VALVE;
+}
+
+function isPump(actuator: SolenoidValve | ProportionalValve | Pump): actuator is Pump {
+  return actuator.type === ActuatorEnum.PUMP;
+}
