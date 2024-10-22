@@ -43,12 +43,22 @@ export async function handlePumpChange(id: number, checked: boolean) {
 }
 export async function getActuatorsList() {
   console.debug("Fetch Actuators from " + process.env.BACKEND_URI);
-  const response = await getAllV1ActuatorsGet();
-  console.debug("Server Request: \n" + JSON.stringify(response.config));
-  console.debug("Server Response Status: " + response.status);
-  console.debug("Server Response Error: \n" + JSON.stringify(response.error));
-  const actuators = response.data ? response.data : [];
-  console.debug("Got Actuators List:\n" + JSON.stringify(actuators));
-  return actuators;
+  try {
+    const response = await getAllV1ActuatorsGet();
+    console.debug("Server Request: \n" + JSON.stringify(response.config));
+    console.debug("Server Response Status: " + response.status);
+    
+    if (response.error) {
+      console.error("Error fetching actuators: ", response.error);
+      return [];
+    }
+
+    const actuators = response.data ? response.data : [];
+    console.debug("Got Actuators List:\n" + JSON.stringify(actuators));
+    return actuators;
+  } catch (error) {
+    console.error("Unexpected error while fetching actuators: ", error);
+    return [];
+  }
 }
 
