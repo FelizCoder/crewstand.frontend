@@ -1,9 +1,12 @@
 "use client";
 
-import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse, SolenoidValveSchema } from "./api";
-import { Switch, Slider } from "antd";
+import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
+import { Slider } from "antd";
 import { getActuatorsList, handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
+import { ActuatorSwitchRow } from "./actuators/ui";
+
+
 
 export default function Page() {
   console.debug('Actuators Page');
@@ -32,10 +35,8 @@ export default function Page() {
       setSolenoidValves(solenoidValves);
       setProportionalValves(proportionalValves);
       setPumps(pumps);
-
     }
   }, [actuators])
-
 
   return (
     <div>
@@ -44,21 +45,15 @@ export default function Page() {
       {/* Solenoid Valves Section */}
       <h2>Solenoid Valves</h2>
       {solenoidValves && solenoidValves.length > 0 && (
-        <div>
-          <div style={{ display: "flex", gap: "20px"}}>
-            {solenoidValves.map((actuator) => (
-              <div key={actuator.type + String(actuator.id)}>
-                {/* Display actuator.id above the switch */}
-                <div>{actuator.id}</div>
-                <Switch
-                  defaultChecked={actuator.open}
-                  onClick={(checked) =>
-                    handleSolenoidChange(actuator.id, checked)
-                  }
-                />
-              </div>
-            ))}
-          </div>
+        <div style={{ display: "flex", gap: "20px" }}>
+          {solenoidValves.map((solenoid) => (
+            <ActuatorSwitchRow
+              key={solenoid.type + String(solenoid.id)}
+              actuator={solenoid}
+              defaultChecked={solenoid.open}
+              handleToggle={handleSolenoidChange}
+            />
+          ))}
         </div>
       )}
 
@@ -71,9 +66,7 @@ export default function Page() {
               <div>{actuator.id}</div>
               <Slider
                 defaultValue={actuator.position}
-                onChangeComplete={(value) =>
-                  handleProportionalValveChange(actuator.id, value)
-                }
+                onChangeComplete={(value) => handleProportionalValveChange(actuator.id, value)}
                 min={0}
                 max={100}
               />
@@ -85,15 +78,15 @@ export default function Page() {
       {/* Pumps Section */}
       <h2>Pumps</h2>
       {pumps && pumps.length > 0 && (
-        <div>
-          <div style={{ display: "flex", gap: "20px" }}>
-            {pumps.map((actuator) => (
-              <div key={actuator.type + String(actuator.id)} >
-                <div>{actuator.id}</div><Switch
-                  defaultChecked={actuator.running}
-                  onClick={(checked) => handlePumpChange(actuator.id, checked)} /></div>
-            ))}
-          </div>
+        <div style={{ display: "flex", gap: "20px" }}>
+          {pumps.map((pump) => (
+            <ActuatorSwitchRow
+              key={pump.type + String(pump.id)}
+              actuator={pump}
+              defaultChecked={pump.running}
+              handleToggle={handlePumpChange}
+            />
+          ))}
         </div>
       )}
     </div>
