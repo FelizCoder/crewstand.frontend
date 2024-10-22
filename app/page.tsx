@@ -1,54 +1,101 @@
 "use client";
 
-import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
+import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse, SolenoidValveSchema } from "./api";
 import { Switch, Slider } from "antd";
 import { getActuatorsList, handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 
 export default function Page() {
   console.debug('Actuators Page');
-  let [actuators, setActuators] = useState<GetAllV1ActuatorsGetResponse>([]);
+  let [actuators, setActuators] = useState<GetAllV1ActuatorsGetResponse | undefined>(undefined);
+  let [solenoidValves, setSolenoidValves] = useState<SolenoidValve[] | undefined>(undefined);
+  let [proportionalValves, setProportionalValves] = useState<ProportionalValve[] | undefined>(undefined);
+  let [pumps, setPumps] = useState<Pump[] | undefined>(undefined);
+
+  async function listActuators() {
+    console.debug("Fetching Actuators");
+    const actuators = await getActuatorsList();
+    setActuators(actuators);
+    console.debug("Got Actuators: \n" + JSON.stringify(actuators));
+  }
 
   useEffect(() => {
-    listActuators();
-
-    async function listActuators() {
-      console.debug("Fetching Actuators");
-      const actuators = await getActuatorsList();
-      setActuators(actuators);
-      console.debug("Got Actuators: \n" + JSON.stringify(actuators));
-    }
+    listActuators()
   }, []);
+
+  useEffect(() => {
+    if (actuators) {
+      const solenoidValves = actuators.filter(isSolenoidValve);
+      const proportionalValves = actuators.filter(isProportionalValve);
+      const pumps = actuators.filter(isPump);
+
+      setSolenoidValves(solenoidValves);
+      setProportionalValves(proportionalValves);
+      setPumps(pumps);
+
+    }
+  }, [actuators])
 
 
   return (
     <div>
       <h1>Actuators Page</h1>
-      {actuators.map(actuator => (
-        <div key={actuator.type + String(actuator.id)}>
-          <h2>{actuator.type} - ID: {actuator.id}</h2>
-          {isSolenoidValve(actuator) && (
-            <Switch
-              defaultChecked={actuator.open}
-              onClick={(checked) => handleSolenoidChange(actuator.id, checked)}
-            />
-          )}
-          {isProportionalValve(actuator) && (
-            <Slider
-              defaultValue={actuator.position}
-              onChangeComplete={(value) => handleProportionalValveChange(actuator.id, value)}
-              min={0}
-              max={100}
-            />
-          )}
-          {isPump(actuator) && (
-            <Switch
-              defaultChecked={actuator.running}
-              onClick={(checked) => handlePumpChange(actuator.id, checked)}
-            />
-          )}
+
+      {/* Solenoid Valves Section */}
+      <h2>Solenoid Valves</h2>
+      {solenoidValves && solenoidValves.length > 0 && (
+        <div>
+          <div style={{ display: "flex", gap: "20px"}}>
+            {solenoidValves.map((actuator) => (
+              <div key={actuator.type + String(actuator.id)}>
+                {/* Display actuator.id above the switch */}
+                <div>{actuator.id}</div>
+                <Switch
+                  defaultChecked={actuator.open}
+                  onClick={(checked) =>
+                    handleSolenoidChange(actuator.id, checked)
+                  }
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
+      )}
+
+      {/* Proportional Valves Section */}
+      <h2>Proportional Valves</h2>
+      {proportionalValves && proportionalValves.length > 0 && (
+        <div>
+          {proportionalValves.map((actuator) => (
+            <div key={actuator.type + String(actuator.id)} style={{ marginBottom: "10px" }}>
+              <div>{actuator.id}</div>
+              <Slider
+                defaultValue={actuator.position}
+                onChangeComplete={(value) =>
+                  handleProportionalValveChange(actuator.id, value)
+                }
+                min={0}
+                max={100}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Pumps Section */}
+      <h2>Pumps</h2>
+      {pumps && pumps.length > 0 && (
+        <div>
+          <div style={{ display: "flex", gap: "20px" }}>
+            {pumps.map((actuator) => (
+              <div key={actuator.type + String(actuator.id)} >
+                <div>{actuator.id}</div><Switch
+                  defaultChecked={actuator.running}
+                  onClick={(checked) => handlePumpChange(actuator.id, checked)} /></div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
