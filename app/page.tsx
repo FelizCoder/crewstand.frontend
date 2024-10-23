@@ -1,10 +1,10 @@
 "use client";
 
 import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
-import { Slider } from "antd";
-import { getActuatorsList, handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./actuators/apiCalls";
+import { getActuatorsList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
-import { ActuatorSwitchRow } from "./actuators/ui";
+import { actuatorSlider, pumpSwitch, solenoidSwitch } from "./actuators/ui";
+import { Space } from "antd";
 
 
 
@@ -43,55 +43,39 @@ export default function Page() {
       <h1>Actuators Page</h1>
 
       {/* Solenoid Valves Section */}
-      <h2>Solenoid Valves</h2>
+      <h2><span className="material-symbols-outlined">valve</span> Solenoid Valves</h2>
       {solenoidValves && solenoidValves.length > 0 && (
-        <div style={{ display: "flex", gap: "20px" }}>
+        <Space size={"large"} wrap>
           {solenoidValves.map((solenoid) => (
-            <ActuatorSwitchRow
-              key={solenoid.type + String(solenoid.id)}
-              actuator={solenoid}
-              defaultChecked={solenoid.open}
-              handleToggle={handleSolenoidChange}
-            />
+            solenoidSwitch(solenoid)
           ))}
-        </div>
+        </Space>
       )}
 
       {/* Proportional Valves Section */}
-      <h2>Proportional Valves</h2>
+      <h2><span className="material-symbols-outlined">valve</span> Proportional Valves</h2>
       {proportionalValves && proportionalValves.length > 0 && (
         <div>
-          {proportionalValves.map((actuator) => (
-            <div key={actuator.type + String(actuator.id)} style={{ marginBottom: "10px" }}>
-              <div>{actuator.id}</div>
-              <Slider
-                defaultValue={actuator.position}
-                onChangeComplete={(value) => handleProportionalValveChange(actuator.id, value)}
-                min={0}
-                max={100}
-              />
-            </div>
+          {proportionalValves.map((proportional) => (
+            actuatorSlider(proportional)
           ))}
         </div>
       )}
 
       {/* Pumps Section */}
-      <h2>Pumps</h2>
+      <h2><span className="material-symbols-outlined">water_pump</span> Pumps</h2>
       {pumps && pumps.length > 0 && (
-        <div style={{ display: "flex", gap: "20px" }}>
+        <Space size={"large"} wrap>
           {pumps.map((pump) => (
-            <ActuatorSwitchRow
-              key={pump.type + String(pump.id)}
-              actuator={pump}
-              defaultChecked={pump.running}
-              handleToggle={handlePumpChange}
-            />
+            pumpSwitch(pump)
           ))}
-        </div>
+        </Space>
       )}
     </div>
   );
+
 }
+
 
 function isSolenoidValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is SolenoidValve {
   return actuator.type === ActuatorEnum.SOLENOID_VALVE;
