@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import StyledComponentsRegistry from "./AntdRegistry";
 import "./globals.css";
+import "./ui/icons.css";
 
 export const metadata: Metadata = {
   title: process.env.PROJECT_NAME ? process.env.PROJECT_NAME : "Crewstand Frontend",
