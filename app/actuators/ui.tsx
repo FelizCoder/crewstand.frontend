@@ -1,5 +1,5 @@
 "use client";
-import { Slider, Switch } from "antd";
+import { InputNumber, Slider, Switch } from "antd";
 import { SolenoidValve, Pump, ProportionalValve } from "../api";
 import { handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./apiCalls";
 import { useState } from "react";
@@ -24,37 +24,54 @@ export const ActuatorSwitch: React.FC<ActuatorControlProps> = ({ actuator, handl
   </div>
 );
 
-export const ActuatorSlider: React.FC<ProportionalValve> = (actuator) => {
+export const ActuatorSlider: React.FC<ProportionalValve> = ( actuator ) => {
   const [position, setPosition] = useState(actuator.position);
 
-
   return (
-    <div key={actuator.type + String(actuator.id)} style={{ marginBottom: "10px" }}>
-      <div className="bold-text">{actuator.id}</div>
-      <Slider
-        value={position}
-        onChange={(value) => setPosition(value)}
-        onChangeComplete={(value) => {
-          handleProportionalValveChange(actuator.id, value);
-        }}
-        min={0}
-        max={100}
-      />
+    <div style={{ marginBottom: "10px" }}>
+      <div style={{ display: 'flex', gap: "10px", alignItems: 'center' }}>
+        <div style={{ height: "50%" }}>
+          <InputNumber
+            style={{ flex: 'none' }}
+            min={0}
+            max={100}
+            value={position}
+            onChange={(value) => {
+              if (value) {
+                setPosition(value);
+                handleProportionalValveChange(actuator.id, value);
+              };
+            }}
+            changeOnWheel={true}
+          />
+        </div>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div className="bold-text" style={{ alignSelf: 'flex-start' }}>{actuator.id}</div>
+          <Slider
+            style={{ width: '100%' }}
+            value={position}
+            onChange={(value) => setPosition(value)}
+            onChangeComplete={(value) => {
+              handleProportionalValveChange(actuator.id, value);
+            }}
+            min={0}
+            max={100}
+          />
+        </div>
+      </div>
     </div>
   );
 }
 
-export function pumpSwitch(pump: Pump) {
+export const PumpSwitch: React.FC<Pump> = (pump) => {
   return <ActuatorSwitch
-    key={pump.type + String(pump.id)}
     actuator={pump}
     defaultChecked={pump.running}
     handleToggle={handlePumpChange} />;
 }
 
-export function solenoidSwitch(solenoid: SolenoidValve) {
+export const SolenoidSwitch: React.FC<SolenoidValve> = (solenoid) => {
   return <ActuatorSwitch
-    key={solenoid.type + String(solenoid.id)}
     actuator={solenoid}
     defaultChecked={solenoid.open}
     handleToggle={handleSolenoidChange} />;

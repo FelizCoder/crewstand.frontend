@@ -3,7 +3,7 @@
 import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
 import { getActuatorsList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
-import { ActuatorSlider, pumpSwitch, solenoidSwitch } from "./actuators/ui";
+import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
 import { Space } from "antd";
 
 
@@ -47,7 +47,7 @@ export default function Page() {
       {solenoidValves && solenoidValves.length > 0 && (
         <Space size={"large"} wrap>
           {solenoidValves.map((solenoid) => (
-            solenoidSwitch(solenoid)
+            <SolenoidSwitch key={solenoid.type + String(solenoid.id)} {... solenoid} />
           ))}
         </Space>
       )}
@@ -57,7 +57,7 @@ export default function Page() {
       {proportionalValves && proportionalValves.length > 0 && (
         <div>
           {proportionalValves.map((proportional) => (
-            <ActuatorSlider {... proportional} />
+            <ActuatorSlider key={proportional.type + String(proportional.id)} {... proportional} />
           ))}
         </div>
       )}
@@ -67,7 +67,7 @@ export default function Page() {
       {pumps && pumps.length > 0 && (
         <Space size={"large"} wrap>
           {pumps.map((pump) => (
-            pumpSwitch(pump)
+            <PumpSwitch key={pump.type + String(pump.id)} {... pump} />
           ))}
         </Space>
       )}
