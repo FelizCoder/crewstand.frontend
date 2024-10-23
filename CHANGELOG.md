@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/FelizCoder/crewstand.frontend/compare/v0.1.0...v0.2.0) (2024-10-23)
+
+
+### Features
+
+* **actuators:** Enhance actuator display and improve API error handling ([2861839](https://github.com/FelizCoder/crewstand.frontend/commit/286183932f1a5fa90ee2adb88788cd0d620f089b))
+* **ActuatorSlider:** enhance actuator UI components with InputNumber and refactor actuator switch components ([301e573](https://github.com/FelizCoder/crewstand.frontend/commit/301e5731ccace817bde50c4e8b44bbc618d40865))
+* **actuators:** responsive layout for Switch rows ([f8f2db2](https://github.com/FelizCoder/crewstand.frontend/commit/f8f2db26039587782dc3acbbba691d0e76bfa563))
+* add icons for actuators ([a40c42a](https://github.com/FelizCoder/crewstand.frontend/commit/a40c42ab8b889bb3e6106a2ee2da1940e5ebf415))
+* **icon:** use water drop icon ([3955c84](https://github.com/FelizCoder/crewstand.frontend/commit/3955c8425ae29ff55d29fa2ff8306c93ce59f1a6))
+* **meta:** add metadata to website ([3f90c80](https://github.com/FelizCoder/crewstand.frontend/commit/3f90c80816197b98b521792d57f3eac2264bd3f4))
+
 ## 0.1.0 (2024-10-14)
 
 
