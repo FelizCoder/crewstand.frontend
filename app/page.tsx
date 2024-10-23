@@ -3,7 +3,7 @@
 import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
 import { getActuatorsList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
-import { actuatorSlider, pumpSwitch, solenoidSwitch } from "./actuators/ui";
+import { ActuatorSlider, pumpSwitch, solenoidSwitch } from "./actuators/ui";
 import { Space } from "antd";
 
 
@@ -57,7 +57,7 @@ export default function Page() {
       {proportionalValves && proportionalValves.length > 0 && (
         <div>
           {proportionalValves.map((proportional) => (
-            actuatorSlider(proportional)
+            <ActuatorSlider {... proportional} />
           ))}
         </div>
       )}

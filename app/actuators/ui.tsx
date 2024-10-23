@@ -2,6 +2,7 @@
 import { Slider, Switch } from "antd";
 import { SolenoidValve, Pump, ProportionalValve } from "../api";
 import { handleProportionalValveChange, handlePumpChange, handleSolenoidChange } from "./apiCalls";
+import { useState } from "react";
 
 export interface ActuatorControlProps {
   actuator: SolenoidValve | Pump;
@@ -23,16 +24,24 @@ export const ActuatorSwitch: React.FC<ActuatorControlProps> = ({ actuator, handl
   </div>
 );
 
-export function actuatorSlider(actuator: ProportionalValve) {
-  // TODO: add Textfield for manual input
-  return <div key={actuator.type + String(actuator.id)} style={{ marginBottom: "10px" }}>
-    <div className="bold-text">{actuator.id}</div>
-    <Slider
-      defaultValue={actuator.position}
-      onChangeComplete={(value) => handleProportionalValveChange(actuator.id, value)}
-      min={0}
-      max={100} />
-  </div>;
+export const ActuatorSlider: React.FC<ProportionalValve> = (actuator) => {
+  const [position, setPosition] = useState(actuator.position);
+
+
+  return (
+    <div key={actuator.type + String(actuator.id)} style={{ marginBottom: "10px" }}>
+      <div className="bold-text">{actuator.id}</div>
+      <Slider
+        value={position}
+        onChange={(value) => setPosition(value)}
+        onChangeComplete={(value) => {
+          handleProportionalValveChange(actuator.id, value);
+        }}
+        min={0}
+        max={100}
+      />
+    </div>
+  );
 }
 
 export function pumpSwitch(pump: Pump) {
