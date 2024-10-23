@@ -26,8 +26,15 @@ export async function handleProportionalValveChange(id: number, value: number) {
       id: id,
       position: value
     }
-  });
-  console.debug("Server Response: \n" + JSON.stringify(response.data));
+  }).then(
+    (response) => { if (response.data) { return response.data }}
+  )
+  
+  response ? 
+  console.debug("Server Response: \n" + JSON.stringify(response)) :
+  console.warn("Could not read server Response");
+
+  return response;
 }
 
 export async function handlePumpChange(id: number, checked: boolean) {
