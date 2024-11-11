@@ -1,5 +1,5 @@
 "use server";
-import { ActuatorEnum, client, getAllV1ActuatorsGet, setStateV1ActuatorsProportionalSetPost, setStateV1ActuatorsPumpSetPost, setStateV1ActuatorsSolenoidSetPost } from "../api";
+import { ActuatorEnum, client, getAllActuatorsV1ActuatorsGet, setStateV1ActuatorsProportionalSetPost, setStateV1ActuatorsPumpSetPost, setStateV1ActuatorsSolenoidSetPost } from "../api";
 
 client.setConfig({
   baseURL: process.env.BACKEND_URI,
@@ -51,7 +51,7 @@ export async function handlePumpChange(id: number, checked: boolean) {
 export async function getActuatorsList() {
   console.debug("Fetch Actuators from " + process.env.BACKEND_URI);
   try {
-    const response = await getAllV1ActuatorsGet();
+    const response = await getAllActuatorsV1ActuatorsGet();
     console.debug("Server Request: \n" + JSON.stringify(response.config));
     console.debug("Server Response Status: " + response.status);
     

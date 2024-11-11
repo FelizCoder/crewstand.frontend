@@ -1,6 +1,6 @@
 "use client";
 
-import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllV1ActuatorsGetResponse } from "./api";
+import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetResponse } from "./api";
 import { getActuatorsList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
@@ -10,7 +10,7 @@ import { Space } from "antd";
 
 export default function Page() {
   console.debug('Actuators Page');
-  let [actuators, setActuators] = useState<GetAllV1ActuatorsGetResponse | undefined>(undefined);
+  let [actuators, setActuators] = useState<GetAllActuatorsV1ActuatorsGetResponse | undefined>(undefined);
   let [solenoidValves, setSolenoidValves] = useState<SolenoidValve[] | undefined>(undefined);
   let [proportionalValves, setProportionalValves] = useState<ProportionalValve[] | undefined>(undefined);
   let [pumps, setPumps] = useState<Pump[] | undefined>(undefined);
