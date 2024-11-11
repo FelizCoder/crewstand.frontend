@@ -4,6 +4,7 @@ import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1
 import { getActuatorsList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
+import { SensorStatistic } from "./sensors/ui";
 import { Space } from "antd";
 
 
@@ -41,6 +42,15 @@ export default function Page() {
   return (
     <div>
       <h1>Actuators Page</h1>
+      {/* Flowmeter Value */}
+      <Space size={"large"} wrap>
+        <span className="material-symbols-outlined">gas_meter</span>
+        <SensorStatistic
+          key={"flowmeter-statistic"} 
+          title={"Flowmeter Value"} 
+          sensorRoute={"/v1/sensors/flowmeters/ws/0"}
+        />
+      </Space>
 
       {/* Solenoid Valves Section */}
       <h2><span className="material-symbols-outlined">valve</span> Solenoid Valves</h2>
