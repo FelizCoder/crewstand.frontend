@@ -3,7 +3,42 @@
 export const ActuatorEnumSchema = {
     type: 'string',
     enum: ['solenoid valve', 'proportional valve', 'pump'],
-    title: 'ActuatorEnum'
+    title: 'ActuatorEnum',
+    description: 'Enumeration for different types of actuators.'
+} as const;
+
+export const FlowmeterSchema = {
+    properties: {
+        type: {
+            '$ref': '#/components/schemas/SensorEnum',
+            default: 'flowmeter'
+        },
+        id: {
+            type: 'integer',
+            minimum: 0,
+            title: 'Id',
+            examples: [0, 1, 2]
+        },
+        current_reading: {
+            anyOf: [
+                {
+                    '$ref': '#/components/schemas/SensorReading'
+                },
+                {
+                    type: 'null'
+                }
+            ]
+        },
+        unit: {
+            type: 'string',
+            title: 'Unit',
+            default: 'l/min'
+        }
+    },
+    type: 'object',
+    required: ['id'],
+    title: 'Flowmeter',
+    description: 'Model for a flowmeter sensor.'
 } as const;
 
 export const HTTPValidationErrorSchema = {
@@ -28,16 +63,21 @@ export const ProportionalValveSchema = {
         },
         id: {
             type: 'integer',
-            title: 'Id'
+            minimum: -1,
+            title: 'Id',
+            examples: [0, 1, 2]
         },
         position: {
             type: 'integer',
+            maximum: 100,
+            minimum: 0,
             title: 'Position'
         }
     },
     type: 'object',
     required: ['id', 'position'],
-    title: 'ProportionalValve'
+    title: 'ProportionalValve',
+    description: 'Model representing a proportional valve actuator.'
 } as const;
 
 export const PumpSchema = {
@@ -48,7 +88,9 @@ export const PumpSchema = {
         },
         id: {
             type: 'integer',
-            title: 'Id'
+            minimum: -1,
+            title: 'Id',
+            examples: [0, 1, 2]
         },
         running: {
             type: 'boolean',
@@ -57,7 +99,35 @@ export const PumpSchema = {
     },
     type: 'object',
     required: ['id', 'running'],
-    title: 'Pump'
+    title: 'Pump',
+    description: 'Model representing a pump actuator.'
+} as const;
+
+export const SensorEnumSchema = {
+    type: 'string',
+    enum: ['flowmeter'],
+    const: 'flowmeter',
+    title: 'SensorEnum',
+    description: 'Enumeration for different types of sensors.'
+} as const;
+
+export const SensorReadingSchema = {
+    properties: {
+        value: {
+            type: 'number',
+            title: 'Value'
+        },
+        timestamp_ns: {
+            type: 'integer',
+            title: 'Timestamp Ns',
+            description: 'Timestamp of the reading in nanoseconds since Epoch',
+            examples: [1730906908814683100]
+        }
+    },
+    type: 'object',
+    required: ['value', 'timestamp_ns'],
+    title: 'SensorReading',
+    description: 'Base model for a sensor reading.'
 } as const;
 
 export const SolenoidValveSchema = {
@@ -68,7 +138,9 @@ export const SolenoidValveSchema = {
         },
         id: {
             type: 'integer',
-            title: 'Id'
+            minimum: -1,
+            title: 'Id',
+            examples: [0, 1, 2]
         },
         open: {
             type: 'boolean',
@@ -77,7 +149,8 @@ export const SolenoidValveSchema = {
     },
     type: 'object',
     required: ['id', 'open'],
-    title: 'SolenoidValve'
+    title: 'SolenoidValve',
+    description: 'Model representing a solenoid valve actuator.'
 } as const;
 
 export const ValidationErrorSchema = {
