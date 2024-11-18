@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/FelizCoder/crewstand.frontend/compare/v0.2.0...v0.3.0) (2024-11-18)
+
+
+### Features
+
+* **api:** generate current types ([d6d465b](https://github.com/FelizCoder/crewstand.frontend/commit/d6d465bfbbc21886f0d3e8f80c305fa4458e6863))
+* **sensors:** add support for WebSocket connections to backend API ([4ef4f70](https://github.com/FelizCoder/crewstand.frontend/commit/4ef4f7026ec75989982afdcba34a8eabc850ed71)), closes [#11](https://github.com/FelizCoder/crewstand.frontend/issues/11)
+
 ## [0.2.0](https://github.com/FelizCoder/crewstand.frontend/compare/v0.1.0...v0.2.0) (2024-10-23)
 
 
