@@ -1,7 +1,7 @@
 "use client";
 
-import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetResponse } from "./api";
-import { getActuatorsList } from "./actuators/apiCalls";
+import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetResponse, Flowmeter, GetAllV1SensorsFlowmetersGetResponse } from "./api";
+import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
 import { SensorStatistic } from "./sensors/ui";
@@ -12,6 +12,7 @@ import { Space } from "antd";
 export default function Page() {
   console.debug('Actuators Page');
   let [actuators, setActuators] = useState<GetAllActuatorsV1ActuatorsGetResponse | undefined>(undefined);
+  let [flowmeters, setFlowmeters] = useState<GetAllV1SensorsFlowmetersGetResponse | undefined>(undefined);
   let [solenoidValves, setSolenoidValves] = useState<SolenoidValve[] | undefined>(undefined);
   let [proportionalValves, setProportionalValves] = useState<ProportionalValve[] | undefined>(undefined);
   let [pumps, setPumps] = useState<Pump[] | undefined>(undefined);
@@ -23,8 +24,16 @@ export default function Page() {
     console.debug("Got Actuators: \n" + JSON.stringify(actuators));
   }
 
+  async function listFlowmeters() {
+    console.debug("Fetching Flowmeters");
+    const flowmeters = await getFlowmetersList();
+    setFlowmeters(flowmeters);
+    console.debug("Got Flowmeters: \n" + JSON.stringify(flowmeters));
+  }
+
   useEffect(() => {
     listActuators()
+    listFlowmeters()
   }, []);
 
   useEffect(() => {
@@ -43,14 +52,19 @@ export default function Page() {
     <div>
       <h1>Actuators Page</h1>
       {/* Flowmeter Value */}
-      <Space size={"large"} wrap>
-        <span className="material-symbols-outlined">gas_meter</span>
-        <SensorStatistic
-          key={"flowmeter-statistic"} 
-          title={"Flowmeter Value"} 
-          sensorRoute={"/v1/sensors/flowmeters/ws/0"}
-        />
-      </Space>
+        <h2><span className="material-symbols-outlined">gas_meter</span> Flowmeters</h2>
+        {flowmeters && flowmeters.length > 0 && (
+          <Space size={"large"} wrap>
+            {flowmeters.map((flowmeter) => (
+            <SensorStatistic
+              key={"flowmeter-statistic" + String(flowmeter.id)} 
+              title={"Flowmeter " + String(flowmeter.id)} 
+              sensorRoute={"/v1/sensors/flowmeters/ws/" + String(flowmeter.id)}
+            />
+          ))}
+        
+          </Space>
+        )}
 
       {/* Solenoid Valves Section */}
       <h2><span className="material-symbols-outlined">valve</span> Solenoid Valves</h2>
