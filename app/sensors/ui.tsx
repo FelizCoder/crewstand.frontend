@@ -19,7 +19,7 @@ export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, sensorR
                 if (res.ok) {
                     const json = await res.json();
                     setBackendUri(json.backend_uri);
-                    console.log("Backend URI:", json.backend_uri);
+                    console.debug("Backend URI:", json.backend_uri);
                 }
             } catch (error) {
                 console.error("Error fetching config", error);
@@ -45,7 +45,7 @@ export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, sensorR
         // Event listener for incoming WebSocket messages
         ws.onmessage = (event) => {
             const message: SensorReading = JSON.parse(event.data);
-            if (message && message.value) {
+            if (message) {
                 setData(message.value);
             }
         };
