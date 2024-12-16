@@ -59,6 +59,7 @@ export default function Page() {
             <SensorStatistic
               key={"flowmeter-statistic" + String(flowmeter.id)} 
               title={"Flowmeter " + String(flowmeter.id)} 
+              websocketHostname={window.location.hostname}
               sensorRoute={"/v1/sensors/flowmeters/ws/" + String(flowmeter.id)}
             />
           ))}

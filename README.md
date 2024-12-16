@@ -10,6 +10,7 @@ This is a [Next.js](https://nextjs.org/)-based application for controlling and m
     - [Building and Deployment](#building-and-deployment)
   - [Configuration](#configuration)
     - [Environment Variables](#environment-variables)
+      - [Details](#details)
   - [API Client](#api-client)
   - [Docker Support](#docker-support)
 
@@ -61,11 +62,9 @@ The application uses the following environment variables:
 | Variable        | Description                                |
 | :-------------- | :----------------------------------------- |
 | BACKEND_URI     | The URI of the backend API                 |
-| BACKEND_WS_URI  | The WebSocket URI for backend interactions |
 
 #### Details
 - **BACKEND_URI**: This variable specifies the URI of the backend API endpoint that the server-side code will interact with. It is generally safe to use `localhost` or `127.0.0.1` if your backend is running on the same server where the Next.js application is deployed.
-- **BACKEND_WS_URI**: This variable specifies the WebSocket URI used by the client-side code. Since clients may connect from different devices, this URI cannot be set to `localhost` or `127.0.0.1`. Instead, you should use a network-accessible address or domain name that clients can access from their own respective networks. e.g., `ws://<hostname>.local:<port>`.
 
 ## API Client
 

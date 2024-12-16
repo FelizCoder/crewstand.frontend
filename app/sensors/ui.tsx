@@ -4,10 +4,11 @@ import { SensorReading } from "../api";
 
 export interface SensorStatisticProps {
     title: string;
+    websocketHostname: string;
     sensorRoute: string;
 }
 
-export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, sensorRoute }) => {
+export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, websocketHostname: websocketBase, sensorRoute }) => {
     const [data, setData] = useState<number | undefined>(undefined);
     const [, setSocket] = useState<WebSocket | null>(null);
     const [backendUri, setBackendUri] = useState<string | undefined>(undefined);
@@ -18,8 +19,9 @@ export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, sensorR
                 const res = await fetch('/api/backend');
                 if (res.ok) {
                     const json = await res.json();
-                    setBackendUri(json.backend_uri);
-                    console.debug("Backend URI:", json.backend_uri);
+                    const backendUri = 'ws://' + websocketBase + ":" + json.backend_port 
+                    setBackendUri(backendUri);
+                    console.debug("Backend URI:", backendUri);
                 }
             } catch (error) {
                 console.error("Error fetching config", error);
