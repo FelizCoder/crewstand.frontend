@@ -1,6 +1,6 @@
 "use client";
 
-import { ActuatorEnum, SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetResponse, Flowmeter, GetAllV1SensorsFlowmetersGetResponse } from "./api";
+import { SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetResponse, Flowmeter, GetAllV1SensorsFlowmetersGetResponse } from "./api";
 import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
@@ -102,13 +102,13 @@ export default function Page() {
 
 
 function isSolenoidValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is SolenoidValve {
-  return actuator.type === ActuatorEnum.SOLENOID_VALVE;
+  return actuator.type === "solenoid valve";
 }
 
 function isProportionalValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is ProportionalValve {
-  return actuator.type === ActuatorEnum.PROPORTIONAL_VALVE;
+  return actuator.type === "proportional valve";
 }
 
 function isPump(actuator: SolenoidValve | ProportionalValve | Pump): actuator is Pump {
-  return actuator.type === ActuatorEnum.PUMP;
+  return actuator.type === "pump";
 }

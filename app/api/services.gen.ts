@@ -12,10 +12,12 @@ export const client = createClient(createConfig());
  * Returns:
  * List[Union[SolenoidValve, ProportionalValve, Pump]]: A list containing all the actuators.
  */
-export const getAllActuatorsV1ActuatorsGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<GetAllActuatorsV1ActuatorsGetResponse, GetAllActuatorsV1ActuatorsGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/'
-}); };
+export const getAllActuatorsV1ActuatorsGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetAllActuatorsV1ActuatorsGetResponse, GetAllActuatorsV1ActuatorsGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/'
+    });
+};
 
 /**
  * Get All
@@ -24,10 +26,12 @@ export const getAllActuatorsV1ActuatorsGet = <ThrowOnError extends boolean = fal
  * Returns:
  * List[service.item_type]: A list of actuators of the specified type.
  */
-export const getAllV1ActuatorsSolenoidGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<GetAllV1ActuatorsSolenoidGetResponse, GetAllV1ActuatorsSolenoidGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/solenoid/'
-}); };
+export const getAllV1ActuatorsSolenoidGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetAllV1ActuatorsSolenoidGetResponse, GetAllV1ActuatorsSolenoidGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/solenoid/'
+    });
+};
 
 /**
  * Get By Id
@@ -39,10 +43,12 @@ export const getAllV1ActuatorsSolenoidGet = <ThrowOnError extends boolean = fals
  * Returns:
  * service.item_type: The actuator object with the specified ID.
  */
-export const getByIdV1ActuatorsSolenoidActuatorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1ActuatorsSolenoidActuatorIdGetData, ThrowOnError>) => { return (options?.client ?? client).get<GetByIdV1ActuatorsSolenoidActuatorIdGetResponse, GetByIdV1ActuatorsSolenoidActuatorIdGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/solenoid/{actuator_id}'
-}); };
+export const getByIdV1ActuatorsSolenoidActuatorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1ActuatorsSolenoidActuatorIdGetData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetByIdV1ActuatorsSolenoidActuatorIdGetResponse, GetByIdV1ActuatorsSolenoidActuatorIdGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/solenoid/{actuator_id}'
+    });
+};
 
 /**
  * Set State
@@ -54,10 +60,12 @@ export const getByIdV1ActuatorsSolenoidActuatorIdGet = <ThrowOnError extends boo
  * Returns:
  * service.item_type: The actuator object after its state has been updated.
  */
-export const setStateV1ActuatorsSolenoidSetPost = <ThrowOnError extends boolean = false>(options: Options<SetStateV1ActuatorsSolenoidSetPostData, ThrowOnError>) => { return (options?.client ?? client).post<SetStateV1ActuatorsSolenoidSetPostResponse, SetStateV1ActuatorsSolenoidSetPostError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/solenoid/set'
-}); };
+export const setStateV1ActuatorsSolenoidSetPost = <ThrowOnError extends boolean = false>(options: Options<SetStateV1ActuatorsSolenoidSetPostData, ThrowOnError>) => {
+    return (options?.client ?? client).post<SetStateV1ActuatorsSolenoidSetPostResponse, SetStateV1ActuatorsSolenoidSetPostError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/solenoid/set'
+    });
+};
 
 /**
  * Get All
@@ -66,10 +74,12 @@ export const setStateV1ActuatorsSolenoidSetPost = <ThrowOnError extends boolean 
  * Returns:
  * List[service.item_type]: A list of actuators of the specified type.
  */
-export const getAllV1ActuatorsProportionalGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<GetAllV1ActuatorsProportionalGetResponse, GetAllV1ActuatorsProportionalGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/proportional/'
-}); };
+export const getAllV1ActuatorsProportionalGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetAllV1ActuatorsProportionalGetResponse, GetAllV1ActuatorsProportionalGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/proportional/'
+    });
+};
 
 /**
  * Get By Id
@@ -81,10 +91,12 @@ export const getAllV1ActuatorsProportionalGet = <ThrowOnError extends boolean = 
  * Returns:
  * service.item_type: The actuator object with the specified ID.
  */
-export const getByIdV1ActuatorsProportionalActuatorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1ActuatorsProportionalActuatorIdGetData, ThrowOnError>) => { return (options?.client ?? client).get<GetByIdV1ActuatorsProportionalActuatorIdGetResponse, GetByIdV1ActuatorsProportionalActuatorIdGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/proportional/{actuator_id}'
-}); };
+export const getByIdV1ActuatorsProportionalActuatorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1ActuatorsProportionalActuatorIdGetData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetByIdV1ActuatorsProportionalActuatorIdGetResponse, GetByIdV1ActuatorsProportionalActuatorIdGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/proportional/{actuator_id}'
+    });
+};
 
 /**
  * Set State
@@ -96,10 +108,12 @@ export const getByIdV1ActuatorsProportionalActuatorIdGet = <ThrowOnError extends
  * Returns:
  * service.item_type: The actuator object after its state has been updated.
  */
-export const setStateV1ActuatorsProportionalSetPost = <ThrowOnError extends boolean = false>(options: Options<SetStateV1ActuatorsProportionalSetPostData, ThrowOnError>) => { return (options?.client ?? client).post<SetStateV1ActuatorsProportionalSetPostResponse, SetStateV1ActuatorsProportionalSetPostError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/proportional/set'
-}); };
+export const setStateV1ActuatorsProportionalSetPost = <ThrowOnError extends boolean = false>(options: Options<SetStateV1ActuatorsProportionalSetPostData, ThrowOnError>) => {
+    return (options?.client ?? client).post<SetStateV1ActuatorsProportionalSetPostResponse, SetStateV1ActuatorsProportionalSetPostError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/proportional/set'
+    });
+};
 
 /**
  * Get All
@@ -108,10 +122,12 @@ export const setStateV1ActuatorsProportionalSetPost = <ThrowOnError extends bool
  * Returns:
  * List[service.item_type]: A list of actuators of the specified type.
  */
-export const getAllV1ActuatorsPumpGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<GetAllV1ActuatorsPumpGetResponse, GetAllV1ActuatorsPumpGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/pump/'
-}); };
+export const getAllV1ActuatorsPumpGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetAllV1ActuatorsPumpGetResponse, GetAllV1ActuatorsPumpGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/pump/'
+    });
+};
 
 /**
  * Get By Id
@@ -123,10 +139,12 @@ export const getAllV1ActuatorsPumpGet = <ThrowOnError extends boolean = false>(o
  * Returns:
  * service.item_type: The actuator object with the specified ID.
  */
-export const getByIdV1ActuatorsPumpActuatorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1ActuatorsPumpActuatorIdGetData, ThrowOnError>) => { return (options?.client ?? client).get<GetByIdV1ActuatorsPumpActuatorIdGetResponse, GetByIdV1ActuatorsPumpActuatorIdGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/pump/{actuator_id}'
-}); };
+export const getByIdV1ActuatorsPumpActuatorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1ActuatorsPumpActuatorIdGetData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetByIdV1ActuatorsPumpActuatorIdGetResponse, GetByIdV1ActuatorsPumpActuatorIdGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/pump/{actuator_id}'
+    });
+};
 
 /**
  * Set State
@@ -138,10 +156,12 @@ export const getByIdV1ActuatorsPumpActuatorIdGet = <ThrowOnError extends boolean
  * Returns:
  * service.item_type: The actuator object after its state has been updated.
  */
-export const setStateV1ActuatorsPumpSetPost = <ThrowOnError extends boolean = false>(options: Options<SetStateV1ActuatorsPumpSetPostData, ThrowOnError>) => { return (options?.client ?? client).post<SetStateV1ActuatorsPumpSetPostResponse, SetStateV1ActuatorsPumpSetPostError, ThrowOnError>({
-    ...options,
-    url: '/v1/actuators/pump/set'
-}); };
+export const setStateV1ActuatorsPumpSetPost = <ThrowOnError extends boolean = false>(options: Options<SetStateV1ActuatorsPumpSetPostData, ThrowOnError>) => {
+    return (options?.client ?? client).post<SetStateV1ActuatorsPumpSetPostResponse, SetStateV1ActuatorsPumpSetPostError, ThrowOnError>({
+        ...options,
+        url: '/v1/actuators/pump/set'
+    });
+};
 
 /**
  * Get All Sensors
@@ -150,10 +170,12 @@ export const setStateV1ActuatorsPumpSetPost = <ThrowOnError extends boolean = fa
  * Returns:
  * List[Union[Flowmeter]]: A list containing all the sensors.
  */
-export const getAllSensorsV1SensorsGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<GetAllSensorsV1SensorsGetResponse, GetAllSensorsV1SensorsGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/sensors/'
-}); };
+export const getAllSensorsV1SensorsGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetAllSensorsV1SensorsGetResponse, GetAllSensorsV1SensorsGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/sensors/'
+    });
+};
 
 /**
  * Get All
@@ -162,10 +184,12 @@ export const getAllSensorsV1SensorsGet = <ThrowOnError extends boolean = false>(
  * Returns:
  * List[self.service.item_type]: A list of sensors of the specified type.
  */
-export const getAllV1SensorsFlowmetersGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<GetAllV1SensorsFlowmetersGetResponse, GetAllV1SensorsFlowmetersGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/sensors/flowmeters/'
-}); };
+export const getAllV1SensorsFlowmetersGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetAllV1SensorsFlowmetersGetResponse, GetAllV1SensorsFlowmetersGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/sensors/flowmeters/'
+    });
+};
 
 /**
  * Get By Id
@@ -177,10 +201,12 @@ export const getAllV1SensorsFlowmetersGet = <ThrowOnError extends boolean = fals
  * Returns:
  * self.service.item_type: The sensor object with the specified ID.
  */
-export const getByIdV1SensorsFlowmetersSensorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1SensorsFlowmetersSensorIdGetData, ThrowOnError>) => { return (options?.client ?? client).get<GetByIdV1SensorsFlowmetersSensorIdGetResponse, GetByIdV1SensorsFlowmetersSensorIdGetError, ThrowOnError>({
-    ...options,
-    url: '/v1/sensors/flowmeters/{sensor_id}'
-}); };
+export const getByIdV1SensorsFlowmetersSensorIdGet = <ThrowOnError extends boolean = false>(options: Options<GetByIdV1SensorsFlowmetersSensorIdGetData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetByIdV1SensorsFlowmetersSensorIdGetResponse, GetByIdV1SensorsFlowmetersSensorIdGetError, ThrowOnError>({
+        ...options,
+        url: '/v1/sensors/flowmeters/{sensor_id}'
+    });
+};
 
 /**
  * Post Reading
@@ -193,10 +219,12 @@ export const getByIdV1SensorsFlowmetersSensorIdGet = <ThrowOnError extends boole
  * Returns:
  * self.service.item_type: The updated sensor object.
  */
-export const postReadingV1SensorsFlowmetersSensorIdReadingPost = <ThrowOnError extends boolean = false>(options: Options<PostReadingV1SensorsFlowmetersSensorIdReadingPostData, ThrowOnError>) => { return (options?.client ?? client).post<PostReadingV1SensorsFlowmetersSensorIdReadingPostResponse, PostReadingV1SensorsFlowmetersSensorIdReadingPostError, ThrowOnError>({
-    ...options,
-    url: '/v1/sensors/flowmeters/{sensor_id}/reading'
-}); };
+export const postReadingV1SensorsFlowmetersSensorIdReadingPost = <ThrowOnError extends boolean = false>(options: Options<PostReadingV1SensorsFlowmetersSensorIdReadingPostData, ThrowOnError>) => {
+    return (options?.client ?? client).post<PostReadingV1SensorsFlowmetersSensorIdReadingPostResponse, PostReadingV1SensorsFlowmetersSensorIdReadingPostError, ThrowOnError>({
+        ...options,
+        url: '/v1/sensors/flowmeters/{sensor_id}/reading'
+    });
+};
 
 /**
  * Root
@@ -205,7 +233,9 @@ export const postReadingV1SensorsFlowmetersSensorIdReadingPost = <ThrowOnError e
  * Returns:
  * dict: A dictionary containing a single key-value pair with the message.
  */
-export const rootGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => { return (options?.client ?? client).get<RootGetResponse, RootGetError, ThrowOnError>({
-    ...options,
-    url: '/'
-}); };
+export const rootGet = <ThrowOnError extends boolean = false>(options?: Options<unknown, ThrowOnError>) => {
+    return (options?.client ?? client).get<RootGetResponse, RootGetError, ThrowOnError>({
+        ...options,
+        url: '/'
+    });
+};

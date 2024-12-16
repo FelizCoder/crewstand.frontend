@@ -25,7 +25,7 @@ export const ActuatorSwitch: React.FC<ActuatorControlProps> = ({ actuator, handl
 );
 
 export const ActuatorSlider: React.FC<ProportionalValve> = ( actuator ) => {
-  const [position, setPosition] = useState(actuator.position);
+  const [position, setPosition] = useState(actuator.state);
 
   return (
     <div style={{ marginBottom: "10px" }}>
@@ -66,13 +66,13 @@ export const ActuatorSlider: React.FC<ProportionalValve> = ( actuator ) => {
 export const PumpSwitch: React.FC<Pump> = (pump) => {
   return <ActuatorSwitch
     actuator={pump}
-    defaultChecked={pump.running}
+    defaultChecked={pump.state}
     handleToggle={handlePumpChange} />;
 }
 
 export const SolenoidSwitch: React.FC<SolenoidValve> = (solenoid) => {
   return <ActuatorSwitch
     actuator={solenoid}
-    defaultChecked={solenoid.open}
+    defaultChecked={solenoid.state}
     handleToggle={handleSolenoidChange} />;
 }
