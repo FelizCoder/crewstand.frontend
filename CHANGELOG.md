@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/FelizCoder/crewstand.frontend/compare/v0.4.0...v1.0.0) (2024-12-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** renamed state Property of actuators accordingly
+
+### Code Refactoring
+
+* **api:** use state in actuator types ([2e14151](https://github.com/FelizCoder/crewstand.frontend/commit/2e14151c2125da87818206a4cca670ef37fd2a02))
+
 ## [0.4.0](https://github.com/FelizCoder/crewstand.frontend/compare/v0.3.0...v0.4.0) (2024-12-02)
 
 
