@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/FelizCoder/crewstand.frontend/compare/v1.0.0...v1.0.1) (2024-12-17)
+
+
+### Bug Fixes
+
+* **config/env:** Remove BACKEND_WS_URI, migrate to derive WebSocket URI from BACKEND_URI ([3f1c5e5](https://github.com/FelizCoder/crewstand.frontend/commit/3f1c5e5ccaff36d3bb7f4378dc092c2ffc53a467))
+
 ## [1.0.0](https://github.com/FelizCoder/crewstand.frontend/compare/v0.4.0...v1.0.0) (2024-12-16)
 
 
