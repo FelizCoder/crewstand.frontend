@@ -71,6 +71,19 @@ export const ProportionalValveSchema = {
             maximum: 100,
             minimum: 0,
             title: 'State'
+        },
+        current_position: {
+            anyOf: [
+                {
+                    type: 'number',
+                    maximum: 100,
+                    minimum: 0
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Current Position'
         }
     },
     type: 'object',
