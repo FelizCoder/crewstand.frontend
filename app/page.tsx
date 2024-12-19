@@ -11,12 +11,12 @@ import {
 import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 import {
-  ProportionalSlider,
   PumpSwitch,
   SolenoidSwitch,
-} from "./actuators/ui";
+} from "./actuators/ui/actuatorSwitches";
 import { SensorStatistic } from "./sensors/ui/sensorStatistic";
 import { Space } from "antd";
+import { ProportionalSlider } from "./actuators/ui/proportionalSlider";
 
 export default function Page() {
   console.debug("Actuators Page");
