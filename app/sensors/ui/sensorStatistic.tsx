@@ -19,9 +19,7 @@ export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, websock
             const backendUri = await getWebsocketBase(websocketHostname);
             setBackendUri(backendUri);
         }
-
         getAndSetBackendUri();
-
     }, []);
 
     useEffect(() => {
