@@ -1,20 +1,37 @@
 "use client";
 
-import { SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetResponse, Flowmeter, GetAllV1SensorsFlowmetersGetResponse } from "./api";
+import {
+  SolenoidValve,
+  ProportionalValve,
+  Pump,
+  GetAllActuatorsV1ActuatorsGetResponse,
+  Flowmeter,
+  GetAllV1SensorsFlowmetersGetResponse,
+} from "./api";
 import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
-import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
+import {
+  ProportionalSlider,
+  PumpSwitch,
+  SolenoidSwitch,
+} from "./actuators/ui";
 import { SensorStatistic } from "./sensors/ui/sensorStatistic";
 import { Space } from "antd";
 
-
-
 export default function Page() {
-  console.debug('Actuators Page');
-  let [actuators, setActuators] = useState<GetAllActuatorsV1ActuatorsGetResponse | undefined>(undefined);
-  let [flowmeters, setFlowmeters] = useState<GetAllV1SensorsFlowmetersGetResponse | undefined>(undefined);
-  let [solenoidValves, setSolenoidValves] = useState<SolenoidValve[] | undefined>(undefined);
-  let [proportionalValves, setProportionalValves] = useState<ProportionalValve[] | undefined>(undefined);
+  console.debug("Actuators Page");
+  let [actuators, setActuators] = useState<
+    GetAllActuatorsV1ActuatorsGetResponse | undefined
+  >(undefined);
+  let [flowmeters, setFlowmeters] = useState<
+    GetAllV1SensorsFlowmetersGetResponse | undefined
+  >(undefined);
+  let [solenoidValves, setSolenoidValves] = useState<
+    SolenoidValve[] | undefined
+  >(undefined);
+  let [proportionalValves, setProportionalValves] = useState<
+    ProportionalValve[] | undefined
+  >(undefined);
   let [pumps, setPumps] = useState<Pump[] | undefined>(undefined);
 
   async function listActuators() {
@@ -32,8 +49,8 @@ export default function Page() {
   }
 
   useEffect(() => {
-    listActuators()
-    listFlowmeters()
+    listActuators();
+    listFlowmeters();
   }, []);
 
   useEffect(() => {
@@ -46,70 +63,91 @@ export default function Page() {
       setProportionalValves(proportionalValves);
       setPumps(pumps);
     }
-  }, [actuators])
+  }, [actuators]);
 
   return (
     <div>
       <h1>Actuators Page</h1>
       {/* Flowmeter Value */}
-        <h2><span className="material-symbols-outlined">gas_meter</span> Flowmeters</h2>
-        {flowmeters && flowmeters.length > 0 && (
-          <Space size={"large"} wrap>
-            {flowmeters.map((flowmeter) => (
+      <h2>
+        <span className="material-symbols-outlined">gas_meter</span> Flowmeters
+      </h2>
+      {flowmeters && flowmeters.length > 0 && (
+        <Space size={"large"} wrap>
+          {flowmeters.map((flowmeter) => (
             <SensorStatistic
-              key={"flowmeter-statistic" + String(flowmeter.id)} 
-              title={"Flowmeter " + String(flowmeter.id)} 
+              key={"flowmeter-statistic" + String(flowmeter.id)}
+              title={"Flowmeter " + String(flowmeter.id)}
               websocketHostname={window.location.hostname}
               sensorRoute={"/v1/sensors/flowmeters/ws/" + String(flowmeter.id)}
             />
           ))}
-        
-          </Space>
-        )}
+        </Space>
+      )}
 
       {/* Solenoid Valves Section */}
-      <h2><span className="material-symbols-outlined">valve</span> Solenoid Valves</h2>
+      <h2>
+        <span className="material-symbols-outlined">valve</span> Solenoid Valves
+      </h2>
       {solenoidValves && solenoidValves.length > 0 && (
         <Space size={"large"} wrap>
           {solenoidValves.map((solenoid) => (
-            <SolenoidSwitch key={solenoid.type + String(solenoid.id)} {... solenoid} />
+            <SolenoidSwitch
+              key={solenoid.type + String(solenoid.id)}
+              {...solenoid}
+            />
           ))}
         </Space>
       )}
 
       {/* Proportional Valves Section */}
-      <h2><span className="material-symbols-outlined">valve</span> Proportional Valves</h2>
+      <h2>
+        <span className="material-symbols-outlined">valve</span> Proportional
+        Valves
+      </h2>
       {proportionalValves && proportionalValves.length > 0 && (
         <div>
           {proportionalValves.map((proportional) => (
-            <ActuatorSlider key={proportional.type + String(proportional.id)} {... proportional} />
+            <ProportionalSlider
+              key={proportional.type + String(proportional.id)}
+              actuator={proportional}
+              wsHostname={window.location.hostname}
+              wsStateRoute={"/v1/actuators/proportional/state/" + String(proportional.id)}
+              wsCurrentPositionRoute={""}
+            />
           ))}
         </div>
       )}
 
       {/* Pumps Section */}
-      <h2><span className="material-symbols-outlined">water_pump</span> Pumps</h2>
+      <h2>
+        <span className="material-symbols-outlined">water_pump</span> Pumps
+      </h2>
       {pumps && pumps.length > 0 && (
         <Space size={"large"} wrap>
           {pumps.map((pump) => (
-            <PumpSwitch key={pump.type + String(pump.id)} {... pump} />
+            <PumpSwitch key={pump.type + String(pump.id)} {...pump} />
           ))}
         </Space>
       )}
     </div>
   );
-
 }
 
-
-function isSolenoidValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is SolenoidValve {
+function isSolenoidValve(
+  actuator: SolenoidValve | ProportionalValve | Pump
+): actuator is SolenoidValve {
   return actuator.type === "solenoid valve";
 }
 
-function isProportionalValve(actuator: SolenoidValve | ProportionalValve | Pump): actuator is ProportionalValve {
+function isProportionalValve(
+  actuator: SolenoidValve | ProportionalValve | Pump
+): actuator is ProportionalValve {
   return actuator.type === "proportional valve";
 }
 
-function isPump(actuator: SolenoidValve | ProportionalValve | Pump): actuator is Pump {
+function isPump(
+  actuator: SolenoidValve | ProportionalValve | Pump
+): actuator is Pump {
   return actuator.type === "pump";
 }

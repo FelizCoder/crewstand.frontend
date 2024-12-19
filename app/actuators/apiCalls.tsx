@@ -17,7 +17,7 @@ export async function handleSolenoidChange(id: number, open: boolean) {
   console.debug("Server Response: \n" + JSON.stringify(response.data));
 };
 
-export async function handleProportionalValveChange(id: number, value: number) {
+export async function handleProportionalValveStateChange(id: number, value: number) {
   console.debug("handleProportionalValveChange: " + id + " " + value);
   const response = await setStateV1ActuatorsProportionalSetPost({
     body: {
