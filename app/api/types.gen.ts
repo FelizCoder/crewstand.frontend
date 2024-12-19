@@ -25,6 +25,7 @@ export type ProportionalValve = {
     type?: 'proportional valve';
     id: number;
     state: number;
+    current_position?: (number | null);
 };
 
 export enum type2 {
