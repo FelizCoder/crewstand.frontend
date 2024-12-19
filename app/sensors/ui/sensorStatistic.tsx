@@ -1,6 +1,7 @@
 import Statistic from "antd/es/statistic/Statistic";
 import { useState, useEffect } from "react";
-import { SensorReading } from "../api";
+import { SensorReading } from "../../api";
+import { getWebsocketBase } from "../../utils/getWebsocketBase";
 
 export interface SensorStatisticProps {
     title: string;
@@ -8,27 +9,19 @@ export interface SensorStatisticProps {
     sensorRoute: string;
 }
 
-export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, websocketHostname: websocketBase, sensorRoute }) => {
+export const SensorStatistic: React.FC<SensorStatisticProps> = ({ title, websocketHostname, sensorRoute }) => {
     const [data, setData] = useState<number | undefined>(undefined);
     const [, setSocket] = useState<WebSocket | null>(null);
     const [backendUri, setBackendUri] = useState<string | undefined>(undefined);
 
     useEffect(() => {
-        const fetchConfig = async () => {
-            try {
-                const res = await fetch('/api/backend');
-                if (res.ok) {
-                    const json = await res.json();
-                    const backendUri = 'ws://' + websocketBase + ":" + json.backend_port 
-                    setBackendUri(backendUri);
-                    console.debug("Backend URI:", backendUri);
-                }
-            } catch (error) {
-                console.error("Error fetching config", error);
-            }
-        };
+        async function getAndSetBackendUri() {
+            const backendUri = await getWebsocketBase(websocketHostname);
+            setBackendUri(backendUri);
+        }
 
-        fetchConfig();
+        getAndSetBackendUri();
+
     }, []);
 
     useEffect(() => {

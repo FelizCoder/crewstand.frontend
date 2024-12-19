@@ -4,7 +4,7 @@ import { SolenoidValve, ProportionalValve, Pump, GetAllActuatorsV1ActuatorsGetRe
 import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
 import { ActuatorSlider, PumpSwitch, SolenoidSwitch } from "./actuators/ui";
-import { SensorStatistic } from "./sensors/ui";
+import { SensorStatistic } from "./sensors/ui/sensorStatistic";
 import { Space } from "antd";
 
 
