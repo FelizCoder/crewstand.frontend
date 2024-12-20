@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { ProportionalValve } from "../../api";
-import { getWebsocketBase } from "../../utils/getWebsocketBase";
 import { handleProportionalValveStateChange } from "../apiCalls";
 import InputNumber from "antd/es/input-number";
-import { Slider } from "antd";
-
+import { Button, Slider } from "antd";
+import useWebSocket from "../../hooks/useWebSocket";
 
 export interface ProportionalSliderProps {
   actuator: ProportionalValve;
@@ -19,101 +18,65 @@ export const ProportionalSlider: React.FC<ProportionalSliderProps> = ({
   wsStateRoute,
   wsCurrentPositionRoute,
 }) => {
-  const [proportionalState, setProportionalState] = useState<number>(
-    actuator.state
-  );
-  const [, setSocket] = useState<WebSocket | null>(null);
-  const [backendUri, setBackendUri] = useState<string | undefined>(undefined);
-  
+  const [sliderValue, setSliderValue] = useState<number>(actuator.state);
+  const [inputValue, setInputValue] = useState<number>(actuator.state);
+
+  const { data: websocketState, error } = useWebSocket<number>({
+    hostname: wsHostname,
+    route: wsStateRoute,
+  });
+
   useEffect(() => {
-    async function getAndSetBackendUri() {
-      const backendUri = await getWebsocketBase(wsHostname);
-      setBackendUri(backendUri);
+    if (websocketState) {
+      setSliderValue(websocketState);
+      setInputValue(websocketState);
     }
-    getAndSetBackendUri();
-  }, []);
-  
-  useEffect(() => {
-    if (!backendUri) return;
-    
-    // Define the WebSocket connection
-    const ws_url = backendUri + wsStateRoute;
-    console.log("Connecting to WebSocket:", ws_url);
-    const ws = new WebSocket(ws_url);
-    
-    // Event listener for when the connection opens
-    ws.onopen = () => {
-      console.debug("WebSocket Connection Opened");
-    };
-    
-    // Event listener for incoming WebSocket messages
-    ws.onmessage = (event) => {
-      const newState: number | void =
-      (event.data as number) ||
-      console.error("Invalid state received from WebSocket");
-      if (newState) {
-        setProportionalState(newState);
-      }
-    };
-    
-    // Event listener for any errors with the WebSocket
-    ws.onerror = (event) => {
-      console.error("WebSocket Error", event);
-    };
-    
-    // Event listener for when the connection closes
-    ws.onclose = (event) => {
-      console.debug("WebSocket Connection Closed", event.reason);
-    };
-    
-    // Store the WebSocket in state
-    setSocket(ws);
-    
-    // Cleanup function to close the WebSocket when the component unmounts
-    return () => {
-      if (
-        ws.readyState === WebSocket.OPEN ||
-        ws.readyState === WebSocket.CONNECTING
-      ) {
-        ws.close();
-      }
-    };
-  }, [backendUri]);
-  
+  }, [websocketState]);
+
   return (
     <div style={{ marginBottom: "10px" }}>
-    <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-    <div style={{ height: "50%" }}>
-    <InputNumber
-    style={{ flex: "none" }}
-    min={0}
-    max={100}
-    value={proportionalState}
-    onChange={(value) => {
-      if (value) {
-        setProportionalState(value);
-        handleProportionalValveStateChange(actuator.id, value);
-      }
-    }}
-    changeOnWheel={true}
-    />
-    </div>
-    <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-    <div className="bold-text" style={{ alignSelf: "flex-start" }}>
-    {actuator.id}
-    </div>
-    <Slider
-    style={{ width: "100%" }}
-    value={proportionalState}
-    onChange={(value) => setProportionalState(value)}
-    onChangeComplete={(value) => {
-      handleProportionalValveStateChange(actuator.id, value);
-    }}
-    min={0}
-    max={100}
-    />
-    </div>
-    </div>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <div style={{ height: "50%" }}>
+          <InputNumber
+            style={{ flex: "none" }}
+            min={0}
+            max={100}
+            value={inputValue}
+            precision={0}
+            onChange={(value) => {
+              if (value) {
+                setInputValue(value);
+              }
+            }}
+            changeOnWheel={true}
+          />
+          <Button
+            type="primary"
+            onClick={() => {
+              handleProportionalValveStateChange(actuator.id, inputValue);
+            }}
+          >
+            Confirm
+          </Button>
+        </div>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <div className="bold-text" style={{ alignSelf: "flex-start" }}>
+            {actuator.id}
+          </div>
+          <Slider
+            style={{ width: "100%" }}
+            value={sliderValue}
+            onChange={(value) => {
+              setSliderValue(value);
+            }}
+            onChangeComplete={(value) => {
+              handleProportionalValveStateChange(actuator.id, value);
+            }}
+            min={0}
+            max={100}
+          />
+        </div>
+      </div>
     </div>
   );
 };
