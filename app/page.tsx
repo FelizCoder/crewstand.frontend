@@ -5,18 +5,14 @@ import {
   ProportionalValve,
   Pump,
   GetAllActuatorsV1ActuatorsGetResponse,
-  Flowmeter,
   GetAllV1SensorsFlowmetersGetResponse,
 } from "./api";
 import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
-import {
-  PumpSwitch,
-  SolenoidSwitch,
-} from "./actuators/ui/actuatorSwitches";
 import { SensorStatistic } from "./sensors/ui/sensorStatistic";
 import { Space } from "antd";
 import { ProportionalSlider } from "./actuators/ui/proportionalSlider";
+import { ActuatorSwitch } from "./actuators/ui/actuatorSwitches";
 
 export default function Page() {
   console.debug("Actuators Page");
@@ -92,9 +88,13 @@ export default function Page() {
       {solenoidValves && solenoidValves.length > 0 && (
         <Space size={"large"} wrap>
           {solenoidValves.map((solenoid) => (
-            <SolenoidSwitch
+            <ActuatorSwitch
+              actuator={solenoid}
+              websocketHostname={window.location.hostname}
+              actuatorRoute={
+                "/v1/actuators/solenoid/state/" + String(solenoid.id)
+              }
               key={solenoid.type + String(solenoid.id)}
-              {...solenoid}
             />
           ))}
         </Space>
@@ -112,7 +112,9 @@ export default function Page() {
               key={proportional.type + String(proportional.id)}
               actuator={proportional}
               wsHostname={window.location.hostname}
-              wsStateRoute={"/v1/actuators/proportional/state/" + String(proportional.id)}
+              wsStateRoute={
+                "/v1/actuators/proportional/state/" + String(proportional.id)
+              }
               wsCurrentPositionRoute={""}
             />
           ))}
@@ -126,7 +128,12 @@ export default function Page() {
       {pumps && pumps.length > 0 && (
         <Space size={"large"} wrap>
           {pumps.map((pump) => (
-            <PumpSwitch key={pump.type + String(pump.id)} {...pump} />
+            <ActuatorSwitch
+              key={pump.type + String(pump.id)}
+              actuator={pump}
+              websocketHostname={window.location.hostname}
+              actuatorRoute={"/v1/actuators/pump/state/" + String(pump.id)}
+            />
           ))}
         </Space>
       )}
