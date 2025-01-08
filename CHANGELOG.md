@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.0.1...v1.1.0) (2025-01-08)
+
+
+### Features
+
+* **api:** Add current_position property to ProportionalValve schema and type ([84557e5](https://github.com/FelizCoder/crewstand.frontend/commit/84557e5b544e234b595c9b1b42bf8bdc41d3fe2b))
+* **controls:** connect control ui components to websockets ([bc0cc40](https://github.com/FelizCoder/crewstand.frontend/commit/bc0cc40f707a01bb6e20e2403ac2415551cdf4c1)), closes [#24](https://github.com/FelizCoder/crewstand.frontend/issues/24)
+* **ProportionalSlider:** real-time state updates via websocket ([aeb8160](https://github.com/FelizCoder/crewstand.frontend/commit/aeb81605eae87c636728e1c66b7f247fc577c92b))
+
 ## [1.0.1](https://github.com/FelizCoder/crewstand.frontend/compare/v1.0.0...v1.0.1) (2024-12-17)
 
 
