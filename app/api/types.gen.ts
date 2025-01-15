@@ -4,10 +4,11 @@
  * Model for a flowmeter sensor.
  */
 export type Flowmeter = {
+    setpoint?: (number | null);
     type?: 'flowmeter';
+    unit?: string;
     id: number;
     current_reading?: (SensorReading | null);
-    unit?: string;
 };
 
 export enum type {
@@ -46,6 +47,24 @@ export enum type3 {
 }
 
 /**
+ * Base model for an sensor.
+ */
+export type Sensor = {
+    setpoint?: (number | null);
+    type: SensorEnum;
+    unit: string;
+    id: number;
+    current_reading?: (SensorReading | null);
+};
+
+/**
+ * Enumeration for different types of sensors.
+ */
+export enum SensorEnum {
+    FLOWMETER = 'flowmeter'
+}
+
+/**
  * Base model for a sensor reading.
  */
 export type SensorReading = {
@@ -54,6 +73,10 @@ export type SensorReading = {
      * Timestamp of the reading in nanoseconds since Epoch
      */
     timestamp_ns: number;
+};
+
+export type Setpoint = {
+    setpoint?: (number | null);
 };
 
 /**
@@ -149,7 +172,7 @@ export type GetAllSensorsV1SensorsGetResponse = (Array<Flowmeter>);
 
 export type GetAllSensorsV1SensorsGetError = unknown;
 
-export type GetAllV1SensorsFlowmetersGetResponse = (Array<Flowmeter>);
+export type GetAllV1SensorsFlowmetersGetResponse = (Array<Sensor>);
 
 export type GetAllV1SensorsFlowmetersGetError = unknown;
 
@@ -159,7 +182,7 @@ export type GetByIdV1SensorsFlowmetersSensorIdGetData = {
     };
 };
 
-export type GetByIdV1SensorsFlowmetersSensorIdGetResponse = (Flowmeter);
+export type GetByIdV1SensorsFlowmetersSensorIdGetResponse = (Sensor);
 
 export type GetByIdV1SensorsFlowmetersSensorIdGetError = (HTTPValidationError);
 
@@ -170,9 +193,24 @@ export type PostReadingV1SensorsFlowmetersSensorIdReadingPostData = {
     };
 };
 
-export type PostReadingV1SensorsFlowmetersSensorIdReadingPostResponse = (Flowmeter);
+export type PostReadingV1SensorsFlowmetersSensorIdReadingPostResponse = (Sensor);
 
 export type PostReadingV1SensorsFlowmetersSensorIdReadingPostError = (HTTPValidationError);
+
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostData = {
+    body: Setpoint;
+    path: {
+        sensor_id: number;
+    };
+};
+
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostResponse = (Sensor);
+
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostError = (HTTPValidationError);
+
+export type GetVersionV1InfoVersionGetResponse = (string);
+
+export type GetVersionV1InfoVersionGetError = unknown;
 
 export type RootGetResponse = (unknown);
 
