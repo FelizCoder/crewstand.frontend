@@ -2,12 +2,28 @@
 
 export const FlowmeterSchema = {
     properties: {
+        setpoint: {
+            anyOf: [
+                {
+                    type: 'number'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Setpoint'
+        },
         type: {
             type: 'string',
             enum: ['flowmeter'],
             const: 'flowmeter',
             title: 'Type',
             default: 'flowmeter'
+        },
+        unit: {
+            type: 'string',
+            title: 'Unit',
+            default: 'l/min'
         },
         id: {
             type: 'integer',
@@ -24,11 +40,6 @@ export const FlowmeterSchema = {
                     type: 'null'
                 }
             ]
-        },
-        unit: {
-            type: 'string',
-            title: 'Unit',
-            default: 'l/min'
         }
     },
     type: 'object',
@@ -118,6 +129,58 @@ export const PumpSchema = {
     description: 'Model representing a pump actuator.'
 } as const;
 
+export const SensorSchema = {
+    properties: {
+        setpoint: {
+            anyOf: [
+                {
+                    type: 'number'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Setpoint'
+        },
+        type: {
+            '$ref': '#/components/schemas/SensorEnum'
+        },
+        unit: {
+            type: 'string',
+            title: 'Unit',
+            examples: ['l/min', '°C', 'bar', 'V']
+        },
+        id: {
+            type: 'integer',
+            minimum: 0,
+            title: 'Id',
+            examples: [0, 1, 2]
+        },
+        current_reading: {
+            anyOf: [
+                {
+                    '$ref': '#/components/schemas/SensorReading'
+                },
+                {
+                    type: 'null'
+                }
+            ]
+        }
+    },
+    type: 'object',
+    required: ['type', 'unit', 'id'],
+    title: 'Sensor',
+    description: 'Base model for an sensor.'
+} as const;
+
+export const SensorEnumSchema = {
+    type: 'string',
+    enum: ['flowmeter'],
+    const: 'flowmeter',
+    title: 'SensorEnum',
+    description: 'Enumeration for different types of sensors.'
+} as const;
+
 export const SensorReadingSchema = {
     properties: {
         value: {
@@ -128,13 +191,31 @@ export const SensorReadingSchema = {
             type: 'integer',
             title: 'Timestamp Ns',
             description: 'Timestamp of the reading in nanoseconds since Epoch',
-            examples: [1730906908814683100]
+            examples: [1736948968360412400]
         }
     },
     type: 'object',
     required: ['value', 'timestamp_ns'],
     title: 'SensorReading',
     description: 'Base model for a sensor reading.'
+} as const;
+
+export const SetpointSchema = {
+    properties: {
+        setpoint: {
+            anyOf: [
+                {
+                    type: 'number'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Setpoint'
+        }
+    },
+    type: 'object',
+    title: 'Setpoint'
 } as const;
 
 export const SolenoidValveSchema = {
