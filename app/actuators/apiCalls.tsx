@@ -1,5 +1,12 @@
 "use server";
-import { client, getAllActuatorsV1ActuatorsGet, getAllV1SensorsFlowmetersGet, setStateV1ActuatorsProportionalSetPost, setStateV1ActuatorsPumpSetPost, setStateV1ActuatorsSolenoidSetPost } from "../api";
+import {
+  client,
+  getAllActuatorsV1ActuatorsGet,
+  getAllV1SensorsFlowmetersGet,
+  setStateV1ActuatorsProportionalSetPost,
+  setStateV1ActuatorsPumpSetPost,
+  setStateV1ActuatorsSolenoidSetPost,
+} from "../api";
 
 client.setConfig({
   baseURL: process.env.BACKEND_URI,
@@ -11,26 +18,31 @@ export async function handleSolenoidChange(id: number, open: boolean) {
   const response = await setStateV1ActuatorsSolenoidSetPost({
     body: {
       id: id,
-      state: open
-    }
+      state: open,
+    },
   });
   console.debug("Server Response: \n" + JSON.stringify(response.data));
-};
+}
 
-export async function handleProportionalValveStateChange(id: number, value: number) {
+export async function handleProportionalValveStateChange(
+  id: number,
+  value: number
+) {
   console.debug("handleProportionalValveChange: " + id + " " + value);
   const response = await setStateV1ActuatorsProportionalSetPost({
     body: {
       id: id,
-      state: value
+      state: value,
+    },
+  }).then((response) => {
+    if (response.data) {
+      return response.data;
     }
-  }).then(
-    (response) => { if (response.data) { return response.data }}
-  )
-  
-  response ? 
-  console.debug("Server Response: \n" + JSON.stringify(response)) :
-  console.warn("Could not read server Response");
+  });
+
+  response
+    ? console.debug("Server Response: \n" + JSON.stringify(response))
+    : console.warn("Could not read server Response");
 
   return response;
 }
@@ -40,8 +52,8 @@ export async function handlePumpChange(id: number, checked: boolean) {
   const response = await setStateV1ActuatorsPumpSetPost({
     body: {
       id: id,
-      state: checked
-    }
+      state: checked,
+    },
   });
   console.debug("Server Response: \n" + JSON.stringify(response.data));
 }
@@ -51,7 +63,7 @@ export async function getActuatorsList() {
     const response = await getAllActuatorsV1ActuatorsGet();
     console.debug("Actuators Request: \n" + JSON.stringify(response.config));
     console.trace("Server Response Status: " + response.status);
-    
+
     if (response.error) {
       console.error("Error fetching actuators: ", response.error);
       return [];
@@ -60,7 +72,6 @@ export async function getActuatorsList() {
     const actuators = response.data ? response.data : [];
     console.debug("Got Actuators List:\n" + JSON.stringify(actuators));
     return actuators;
-  
   } catch (error) {
     console.error("Unexpected error while fetching actuators: ", error);
     return [];
@@ -82,7 +93,6 @@ export async function getFlowmetersList() {
     const flowmeters = response.data ? response.data : [];
     console.debug("Got Flowmeters List:\n" + JSON.stringify(flowmeters));
     return flowmeters;
-  
   } catch (error) {
     console.error("Unexpected error while fetching flowmeters: ", error);
     return [];
