@@ -4,18 +4,14 @@
  * Model for a flowmeter sensor.
  */
 export type Flowmeter = {
-    setpoint?: (number | null);
+    setpoint?: number | null;
     type?: 'flowmeter';
     unit?: string;
     id: number;
-    current_reading?: (SensorReading | null);
+    current_reading?: SensorReading | null;
 };
 
-export enum type {
-    FLOWMETER = 'flowmeter'
-}
-
-export type HTTPValidationError = {
+export type HttpValidationError = {
     detail?: Array<ValidationError>;
 };
 
@@ -26,12 +22,8 @@ export type ProportionalValve = {
     type?: 'proportional valve';
     id: number;
     state: number;
-    current_position?: (number | null);
+    current_position?: number | null;
 };
-
-export enum type2 {
-    PROPORTIONAL_VALVE = 'proportional valve'
-}
 
 /**
  * Model representing a pump actuator.
@@ -42,27 +34,21 @@ export type Pump = {
     state: boolean;
 };
 
-export enum type3 {
-    PUMP = 'pump'
-}
-
 /**
  * Base model for an sensor.
  */
 export type Sensor = {
-    setpoint?: (number | null);
+    setpoint?: number | null;
     type: SensorEnum;
     unit: string;
     id: number;
-    current_reading?: (SensorReading | null);
+    current_reading?: SensorReading | null;
 };
 
 /**
  * Enumeration for different types of sensors.
  */
-export enum SensorEnum {
-    FLOWMETER = 'flowmeter'
-}
+export type SensorEnum = 'flowmeter';
 
 /**
  * Base model for a sensor reading.
@@ -76,7 +62,7 @@ export type SensorReading = {
 };
 
 export type Setpoint = {
-    setpoint?: (number | null);
+    setpoint?: number | null;
 };
 
 /**
@@ -88,130 +74,371 @@ export type SolenoidValve = {
     state: boolean;
 };
 
-export enum type4 {
-    SOLENOID_VALVE = 'solenoid valve'
-}
-
 export type ValidationError = {
-    loc: Array<(string | number)>;
+    loc: Array<string | number>;
     msg: string;
     type: string;
 };
 
-export type GetAllActuatorsV1ActuatorsGetResponse = (Array<(SolenoidValve | ProportionalValve | Pump)>);
+export type GetAllActuatorsV1ActuatorsGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/';
+};
 
-export type GetAllActuatorsV1ActuatorsGetError = unknown;
+export type GetAllActuatorsV1ActuatorsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<SolenoidValve | ProportionalValve | Pump>;
+};
 
-export type GetAllV1ActuatorsSolenoidGetResponse = (Array<SolenoidValve>);
+export type GetAllActuatorsV1ActuatorsGetResponse = GetAllActuatorsV1ActuatorsGetResponses[keyof GetAllActuatorsV1ActuatorsGetResponses];
 
-export type GetAllV1ActuatorsSolenoidGetError = unknown;
+export type GetAllV1ActuatorsSolenoidGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/solenoid/';
+};
+
+export type GetAllV1ActuatorsSolenoidGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<SolenoidValve>;
+};
+
+export type GetAllV1ActuatorsSolenoidGetResponse = GetAllV1ActuatorsSolenoidGetResponses[keyof GetAllV1ActuatorsSolenoidGetResponses];
 
 export type GetByIdV1ActuatorsSolenoidActuatorIdGetData = {
+    body?: never;
     path: {
         actuator_id: number;
     };
+    query?: never;
+    url: '/v1/actuators/solenoid/{actuator_id}';
 };
 
-export type GetByIdV1ActuatorsSolenoidActuatorIdGetResponse = (SolenoidValve);
+export type GetByIdV1ActuatorsSolenoidActuatorIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type GetByIdV1ActuatorsSolenoidActuatorIdGetError = (HTTPValidationError);
+export type GetByIdV1ActuatorsSolenoidActuatorIdGetError = GetByIdV1ActuatorsSolenoidActuatorIdGetErrors[keyof GetByIdV1ActuatorsSolenoidActuatorIdGetErrors];
+
+export type GetByIdV1ActuatorsSolenoidActuatorIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: SolenoidValve;
+};
+
+export type GetByIdV1ActuatorsSolenoidActuatorIdGetResponse = GetByIdV1ActuatorsSolenoidActuatorIdGetResponses[keyof GetByIdV1ActuatorsSolenoidActuatorIdGetResponses];
 
 export type SetStateV1ActuatorsSolenoidSetPostData = {
     body: SolenoidValve;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/solenoid/set';
 };
 
-export type SetStateV1ActuatorsSolenoidSetPostResponse = (SolenoidValve);
+export type SetStateV1ActuatorsSolenoidSetPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type SetStateV1ActuatorsSolenoidSetPostError = (HTTPValidationError);
+export type SetStateV1ActuatorsSolenoidSetPostError = SetStateV1ActuatorsSolenoidSetPostErrors[keyof SetStateV1ActuatorsSolenoidSetPostErrors];
 
-export type GetAllV1ActuatorsProportionalGetResponse = (Array<ProportionalValve>);
+export type SetStateV1ActuatorsSolenoidSetPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: SolenoidValve;
+};
 
-export type GetAllV1ActuatorsProportionalGetError = unknown;
+export type SetStateV1ActuatorsSolenoidSetPostResponse = SetStateV1ActuatorsSolenoidSetPostResponses[keyof SetStateV1ActuatorsSolenoidSetPostResponses];
+
+export type GetAllV1ActuatorsProportionalGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/proportional/';
+};
+
+export type GetAllV1ActuatorsProportionalGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<ProportionalValve>;
+};
+
+export type GetAllV1ActuatorsProportionalGetResponse = GetAllV1ActuatorsProportionalGetResponses[keyof GetAllV1ActuatorsProportionalGetResponses];
 
 export type GetByIdV1ActuatorsProportionalActuatorIdGetData = {
+    body?: never;
     path: {
         actuator_id: number;
     };
+    query?: never;
+    url: '/v1/actuators/proportional/{actuator_id}';
 };
 
-export type GetByIdV1ActuatorsProportionalActuatorIdGetResponse = (ProportionalValve);
+export type GetByIdV1ActuatorsProportionalActuatorIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type GetByIdV1ActuatorsProportionalActuatorIdGetError = (HTTPValidationError);
+export type GetByIdV1ActuatorsProportionalActuatorIdGetError = GetByIdV1ActuatorsProportionalActuatorIdGetErrors[keyof GetByIdV1ActuatorsProportionalActuatorIdGetErrors];
+
+export type GetByIdV1ActuatorsProportionalActuatorIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: ProportionalValve;
+};
+
+export type GetByIdV1ActuatorsProportionalActuatorIdGetResponse = GetByIdV1ActuatorsProportionalActuatorIdGetResponses[keyof GetByIdV1ActuatorsProportionalActuatorIdGetResponses];
 
 export type SetStateV1ActuatorsProportionalSetPostData = {
     body: ProportionalValve;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/proportional/set';
 };
 
-export type SetStateV1ActuatorsProportionalSetPostResponse = (ProportionalValve);
+export type SetStateV1ActuatorsProportionalSetPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type SetStateV1ActuatorsProportionalSetPostError = (HTTPValidationError);
+export type SetStateV1ActuatorsProportionalSetPostError = SetStateV1ActuatorsProportionalSetPostErrors[keyof SetStateV1ActuatorsProportionalSetPostErrors];
 
-export type GetAllV1ActuatorsPumpGetResponse = (Array<Pump>);
+export type SetStateV1ActuatorsProportionalSetPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: ProportionalValve;
+};
 
-export type GetAllV1ActuatorsPumpGetError = unknown;
+export type SetStateV1ActuatorsProportionalSetPostResponse = SetStateV1ActuatorsProportionalSetPostResponses[keyof SetStateV1ActuatorsProportionalSetPostResponses];
+
+export type GetAllV1ActuatorsPumpGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/pump/';
+};
+
+export type GetAllV1ActuatorsPumpGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<Pump>;
+};
+
+export type GetAllV1ActuatorsPumpGetResponse = GetAllV1ActuatorsPumpGetResponses[keyof GetAllV1ActuatorsPumpGetResponses];
 
 export type GetByIdV1ActuatorsPumpActuatorIdGetData = {
+    body?: never;
     path: {
         actuator_id: number;
     };
+    query?: never;
+    url: '/v1/actuators/pump/{actuator_id}';
 };
 
-export type GetByIdV1ActuatorsPumpActuatorIdGetResponse = (Pump);
+export type GetByIdV1ActuatorsPumpActuatorIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type GetByIdV1ActuatorsPumpActuatorIdGetError = (HTTPValidationError);
+export type GetByIdV1ActuatorsPumpActuatorIdGetError = GetByIdV1ActuatorsPumpActuatorIdGetErrors[keyof GetByIdV1ActuatorsPumpActuatorIdGetErrors];
+
+export type GetByIdV1ActuatorsPumpActuatorIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Pump;
+};
+
+export type GetByIdV1ActuatorsPumpActuatorIdGetResponse = GetByIdV1ActuatorsPumpActuatorIdGetResponses[keyof GetByIdV1ActuatorsPumpActuatorIdGetResponses];
 
 export type SetStateV1ActuatorsPumpSetPostData = {
     body: Pump;
+    path?: never;
+    query?: never;
+    url: '/v1/actuators/pump/set';
 };
 
-export type SetStateV1ActuatorsPumpSetPostResponse = (Pump);
+export type SetStateV1ActuatorsPumpSetPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type SetStateV1ActuatorsPumpSetPostError = (HTTPValidationError);
+export type SetStateV1ActuatorsPumpSetPostError = SetStateV1ActuatorsPumpSetPostErrors[keyof SetStateV1ActuatorsPumpSetPostErrors];
 
-export type GetAllSensorsV1SensorsGetResponse = (Array<Flowmeter>);
+export type SetStateV1ActuatorsPumpSetPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: Pump;
+};
 
-export type GetAllSensorsV1SensorsGetError = unknown;
+export type SetStateV1ActuatorsPumpSetPostResponse = SetStateV1ActuatorsPumpSetPostResponses[keyof SetStateV1ActuatorsPumpSetPostResponses];
 
-export type GetAllV1SensorsFlowmetersGetResponse = (Array<Sensor>);
+export type GetAllSensorsV1SensorsGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/sensors/';
+};
 
-export type GetAllV1SensorsFlowmetersGetError = unknown;
+export type GetAllSensorsV1SensorsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<Flowmeter>;
+};
+
+export type GetAllSensorsV1SensorsGetResponse = GetAllSensorsV1SensorsGetResponses[keyof GetAllSensorsV1SensorsGetResponses];
+
+export type GetAllV1SensorsFlowmetersGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/sensors/flowmeters/';
+};
+
+export type GetAllV1SensorsFlowmetersGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<Sensor>;
+};
+
+export type GetAllV1SensorsFlowmetersGetResponse = GetAllV1SensorsFlowmetersGetResponses[keyof GetAllV1SensorsFlowmetersGetResponses];
 
 export type GetByIdV1SensorsFlowmetersSensorIdGetData = {
+    body?: never;
     path: {
         sensor_id: number;
     };
+    query?: never;
+    url: '/v1/sensors/flowmeters/{sensor_id}';
 };
 
-export type GetByIdV1SensorsFlowmetersSensorIdGetResponse = (Sensor);
+export type GetByIdV1SensorsFlowmetersSensorIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type GetByIdV1SensorsFlowmetersSensorIdGetError = (HTTPValidationError);
+export type GetByIdV1SensorsFlowmetersSensorIdGetError = GetByIdV1SensorsFlowmetersSensorIdGetErrors[keyof GetByIdV1SensorsFlowmetersSensorIdGetErrors];
+
+export type GetByIdV1SensorsFlowmetersSensorIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: Sensor;
+};
+
+export type GetByIdV1SensorsFlowmetersSensorIdGetResponse = GetByIdV1SensorsFlowmetersSensorIdGetResponses[keyof GetByIdV1SensorsFlowmetersSensorIdGetResponses];
 
 export type PostReadingV1SensorsFlowmetersSensorIdReadingPostData = {
     body: SensorReading;
     path: {
         sensor_id: number;
     };
+    query?: never;
+    url: '/v1/sensors/flowmeters/{sensor_id}/reading';
 };
 
-export type PostReadingV1SensorsFlowmetersSensorIdReadingPostResponse = (Sensor);
+export type PostReadingV1SensorsFlowmetersSensorIdReadingPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type PostReadingV1SensorsFlowmetersSensorIdReadingPostError = (HTTPValidationError);
+export type PostReadingV1SensorsFlowmetersSensorIdReadingPostError = PostReadingV1SensorsFlowmetersSensorIdReadingPostErrors[keyof PostReadingV1SensorsFlowmetersSensorIdReadingPostErrors];
+
+export type PostReadingV1SensorsFlowmetersSensorIdReadingPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: Sensor;
+};
+
+export type PostReadingV1SensorsFlowmetersSensorIdReadingPostResponse = PostReadingV1SensorsFlowmetersSensorIdReadingPostResponses[keyof PostReadingV1SensorsFlowmetersSensorIdReadingPostResponses];
 
 export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostData = {
     body: Setpoint;
     path: {
         sensor_id: number;
     };
+    query?: never;
+    url: '/v1/sensors/flowmeters/{sensor_id}/setpoint';
 };
 
-export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostResponse = (Sensor);
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
 
-export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostError = (HTTPValidationError);
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostError = PostSetpointV1SensorsFlowmetersSensorIdSetpointPostErrors[keyof PostSetpointV1SensorsFlowmetersSensorIdSetpointPostErrors];
 
-export type GetVersionV1InfoVersionGetResponse = (string);
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: Sensor;
+};
 
-export type GetVersionV1InfoVersionGetError = unknown;
+export type PostSetpointV1SensorsFlowmetersSensorIdSetpointPostResponse = PostSetpointV1SensorsFlowmetersSensorIdSetpointPostResponses[keyof PostSetpointV1SensorsFlowmetersSensorIdSetpointPostResponses];
 
-export type RootGetResponse = (unknown);
+export type GetVersionV1InfoVersionGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/info/version';
+};
 
-export type RootGetError = unknown;
+export type GetVersionV1InfoVersionGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: string;
+};
+
+export type GetVersionV1InfoVersionGetResponse = GetVersionV1InfoVersionGetResponses[keyof GetVersionV1InfoVersionGetResponses];
+
+export type RootGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/';
+};
+
+export type RootGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
