@@ -5,22 +5,18 @@ import {
   ProportionalValve,
   Pump,
   GetAllActuatorsV1ActuatorsGetResponse,
-  GetAllV1SensorsFlowmetersGetResponse,
 } from "./api";
-import { getActuatorsList, getFlowmetersList } from "./actuators/apiCalls";
+import { getActuatorsList } from "./actuators/apiCalls";
 import { useState, useEffect } from "react";
-import { SensorStatistic } from "./sensors/ui/sensorStatistic";
 import { Space } from "antd";
 import { ProportionalSlider } from "./actuators/ui/proportionalSlider";
 import { ActuatorSwitch } from "./actuators/ui/actuatorSwitches";
+import { FlowmeterWidgets } from "./sensors/ui/flowmeterWidgets";
 
 export default function Page() {
   console.debug("Actuators Page");
   let [actuators, setActuators] = useState<
     GetAllActuatorsV1ActuatorsGetResponse | undefined
-  >(undefined);
-  let [flowmeters, setFlowmeters] = useState<
-    GetAllV1SensorsFlowmetersGetResponse | undefined
   >(undefined);
   let [solenoidValves, setSolenoidValves] = useState<
     SolenoidValve[] | undefined
@@ -37,16 +33,8 @@ export default function Page() {
     console.debug("Got Actuators: \n" + JSON.stringify(actuators));
   }
 
-  async function listFlowmeters() {
-    console.debug("Fetching Flowmeters");
-    const flowmeters = await getFlowmetersList();
-    setFlowmeters(flowmeters);
-    console.debug("Got Flowmeters: \n" + JSON.stringify(flowmeters));
-  }
-
   useEffect(() => {
     listActuators();
-    listFlowmeters();
   }, []);
 
   useEffect(() => {
@@ -68,18 +56,7 @@ export default function Page() {
       <h2>
         <span className="material-symbols-outlined">gas_meter</span> Flowmeters
       </h2>
-      {flowmeters && flowmeters.length > 0 && (
-        <Space size={"large"} wrap>
-          {flowmeters.map((flowmeter) => (
-            <SensorStatistic
-              key={"flowmeter-statistic" + String(flowmeter.id)}
-              title={"Flowmeter " + String(flowmeter.id)}
-              websocketHostname={window.location.hostname}
-              sensorRoute={"/v1/sensors/flowmeters/ws/" + String(flowmeter.id)}
-            />
-          ))}
-        </Space>
-      )}
+      <FlowmeterWidgets />
 
       {/* Solenoid Valves Section */}
       <h2>
