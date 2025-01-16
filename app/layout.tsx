@@ -1,9 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
-import StyledComponentsRegistry from "./AntdRegistry";
 import "./globals.css";
 import "./ui/icons.css";
 import { ConfigProvider } from "antd";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import NavLayout from "./ui/navigation/NavLayout";
 
 export const metadata: Metadata = {
   title: process.env.PROJECT_NAME
@@ -20,14 +21,20 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-function RootLayout({ children }: React.PropsWithChildren) {
+
+const RootLayout = ({ children }: React.PropsWithChildren) => {
+
   return (
     <html lang="en">
       <ConfigProvider wave={{ disabled: true }}>
         {/* Workaround for TypeError: reactRender is not a function. 
         might be resolved in future antd version. https://github.com/ant-design/ant-design/issues/51339*/}
         <body>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <AntdRegistry>
+            <NavLayout>
+              {children}
+            </NavLayout>
+          </AntdRegistry>
         </body>
       </ConfigProvider>
     </html>
