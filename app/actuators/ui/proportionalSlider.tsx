@@ -4,22 +4,23 @@ import { handleProportionalValveStateChange } from "../apiCalls";
 import InputNumber from "antd/es/input-number";
 import { Button, Slider } from "antd";
 import useWebSocket from "../../hooks/useWebSocket";
+import { InputConfirmed } from "./inputConfirmed";
 
 export interface ProportionalSliderProps {
-  actuator: ProportionalValve;
+  proportional: ProportionalValve;
   wsHostname: string;
   wsStateRoute: string;
   wsCurrentPositionRoute: string;
 }
 
 export const ProportionalSlider: React.FC<ProportionalSliderProps> = ({
-  actuator,
+  proportional,
   wsHostname,
   wsStateRoute,
   wsCurrentPositionRoute,
 }) => {
-  const [sliderValue, setSliderValue] = useState<number>(actuator.state);
-  const [inputValue, setInputValue] = useState<number>(actuator.state);
+  const [sliderValue, setSliderValue] = useState<number>(proportional.state);
+  const [inputValue, setInputValue] = useState<number>(proportional.state);
 
   const { data: websocketState, error } = useWebSocket<number>({
     hostname: wsHostname,
@@ -27,41 +28,32 @@ export const ProportionalSlider: React.FC<ProportionalSliderProps> = ({
   });
 
   useEffect(() => {
-    if (websocketState) {
+    if (websocketState !== undefined) {
       setSliderValue(websocketState);
       setInputValue(websocketState);
     }
   }, [websocketState]);
 
+  const handleConfirm = (value: number) => {
+    handleProportionalValveStateChange(proportional.id, value);
+  };
+
   return (
     <div style={{ marginBottom: "10px" }}>
       <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <div style={{ height: "50%" }}>
-          <InputNumber
-            style={{ flex: "none" }}
+          <InputConfirmed
+            value={inputValue}
             min={0}
             max={100}
-            value={inputValue}
             precision={0}
-            onChange={(value) => {
-              if (value) {
-                setInputValue(value);
-              }
-            }}
-            changeOnWheel={true}
+            onValueChange={setInputValue}
+            onConfirm={handleConfirm}
           />
-          <Button
-            type="primary"
-            onClick={() => {
-              handleProportionalValveStateChange(actuator.id, inputValue);
-            }}
-          >
-            Confirm
-          </Button>
         </div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
           <div className="bold-text" style={{ alignSelf: "flex-start" }}>
-            {actuator.id}
+            {proportional.id}
           </div>
           <Slider
             style={{ width: "100%" }}
@@ -70,7 +62,7 @@ export const ProportionalSlider: React.FC<ProportionalSliderProps> = ({
               setSliderValue(value);
             }}
             onChangeComplete={(value) => {
-              handleProportionalValveStateChange(actuator.id, value);
+              handleProportionalValveStateChange(proportional.id, value);
             }}
             min={0}
             max={100}

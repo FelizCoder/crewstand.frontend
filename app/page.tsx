@@ -87,7 +87,7 @@ export default function Page() {
           {proportionalValves.map((proportional) => (
             <ProportionalSlider
               key={proportional.type + String(proportional.id)}
-              actuator={proportional}
+              proportional={proportional}
               wsHostname={window.location.hostname}
               wsStateRoute={
                 "/v1/actuators/proportional/state/" + String(proportional.id)
