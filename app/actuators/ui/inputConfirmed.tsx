@@ -34,6 +34,9 @@ export const InputConfirmed: React.FC<InputControllerProps> = ({
         onChange={handleChange}
         changeOnWheel={true}
       />
+      <Button type="primary" onClick={() => onConfirm(value)}>
+        Confirm
+      </Button>
     </div>
   );
 };
