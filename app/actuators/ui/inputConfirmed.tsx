@@ -5,6 +5,7 @@ export interface InputControllerProps {
   min: number;
   max: number;
   precision: number;
+  disabled?: boolean;
   onValueChange: (value: number) => void;
   onConfirm: (value: number) => void;
 }
@@ -14,6 +15,7 @@ export const InputConfirmed: React.FC<InputControllerProps> = ({
   min,
   max,
   precision,
+  disabled,
   onValueChange,
   onConfirm,
 }) => {
@@ -33,8 +35,9 @@ export const InputConfirmed: React.FC<InputControllerProps> = ({
         precision={precision}
         onChange={handleChange}
         changeOnWheel={true}
+        disabled={disabled}
       />
-      <Button type="primary" onClick={() => onConfirm(value)}>
+      <Button type="primary" onClick={() => onConfirm(value)} disabled={disabled}>
         Confirm
       </Button>
     </div>
