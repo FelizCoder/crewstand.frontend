@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.1.0...v1.2.0) (2025-01-23)
+
+
+### Features
+
+* **automatic:** Add API call for setpoint changes & integrate with WebSocket updates ([a364c20](https://github.com/FelizCoder/crewstand.frontend/commit/a364c20ad4d61049397925a6867cc4469ee162dd))
+* **automatic:** Introduce Flow Control Page with dynamic setpoint management ([f38834f](https://github.com/FelizCoder/crewstand.frontend/commit/f38834ff66a1daa90fe0bec706d479fff4e34bf2)), closes [#29](https://github.com/FelizCoder/crewstand.frontend/issues/29)
+* **client:** add sensor management functionality and navigation link ([b065ff9](https://github.com/FelizCoder/crewstand.frontend/commit/b065ff948a69b28d46ebe41e69aa64ee681d28b0)), closes [#29](https://github.com/FelizCoder/crewstand.frontend/issues/29)
+* **InputConfirmed:** Add optional 'disabled' prop ([75c7e79](https://github.com/FelizCoder/crewstand.frontend/commit/75c7e7901ee7e6428f65d9d811a026e3b91f7270))
+* **InputConfirmed:** introduce InputConfirmed ([4e0da7e](https://github.com/FelizCoder/crewstand.frontend/commit/4e0da7efa14eab8b40a5692f28ea72b4fa8f9e18)), closes [#29](https://github.com/FelizCoder/crewstand.frontend/issues/29)
+* **Layout:** Introduce New Page & Update Layout with Ant Design Registry ([4a44e39](https://github.com/FelizCoder/crewstand.frontend/commit/4a44e394bec404ba947e1eee2abf7eb2b7b3a43a)), closes [#29](https://github.com/FelizCoder/crewstand.frontend/issues/29)
+
+
+### Bug Fixes
+
+* **automatic:** ensure `window.location` is defined ([47808e8](https://github.com/FelizCoder/crewstand.frontend/commit/47808e8f9b53ba1056537cd934eb620170c40479)), closes [#29](https://github.com/FelizCoder/crewstand.frontend/issues/29)
+
 ## [1.1.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.0.1...v1.1.0) (2025-01-08)
 
 
