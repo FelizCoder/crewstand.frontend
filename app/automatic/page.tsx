@@ -5,10 +5,10 @@ import { FlowmeterWidgets } from "../sensors/ui/flowmeterWidgets";
 import SetpointInput from "./setpointInput";
 
 export default function Page() {
-  const [isMounted, setIsMounted] = useState(false);
+  const [hostname, setHostname] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setIsMounted(true);
+    setHostname(window.location.hostname);
   }, []);
 
   return (
@@ -22,13 +22,22 @@ export default function Page() {
         </h2>
         <FlowmeterWidgets />
 
-        {isMounted && (
+        {hostname && (
           <SetpointInput
             websocketHostname={window.location.hostname}
             route="/v1/sensors/flowmeters/ws/setpoint/0"
           />
         )}
       </div>
+      {hostname && (
+        <div>
+          <iframe
+            src={`http://${hostname}:3000/d/feaybw7pu9k3ke/flow-rate?orgId=1&from=now-2m&to=now&timezone=browser&refresh=5s&kiosk`}
+            height={750}
+            width="100%"
+          />
+        </div>
+      )}
     </div>
   );
 }
