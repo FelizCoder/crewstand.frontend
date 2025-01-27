@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.2.0...v1.3.0) (2025-01-27)
+
+
+### Features
+
+* **automatic:** add iframe for flow-rate display ([ba63645](https://github.com/FelizCoder/crewstand.frontend/commit/ba63645834d0ebccb563d1c2e7a767f41ff5e818)), closes [#28](https://github.com/FelizCoder/crewstand.frontend/issues/28)
+
 ## [1.2.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.1.0...v1.2.0) (2025-01-23)
 
 
