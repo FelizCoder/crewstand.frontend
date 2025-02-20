@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.3.0...v1.4.0) (2025-02-20)
+
+
+### Features
+
+* add HandleAllButtons component to manage solenoid valves ([c03baa9](https://github.com/FelizCoder/crewstand.frontend/commit/c03baa9eaed51afc138b5d0811d492ac8f9d3579)), closes [#34](https://github.com/FelizCoder/crewstand.frontend/issues/34)
+
+
+### Bug Fixes
+
+* install corepack globally in the Dockerfile ([c663d90](https://github.com/FelizCoder/crewstand.frontend/commit/c663d9056d50b85c4d1607fc7d2a8242bb0d8fd3))
+
 ## [1.3.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.2.0...v1.3.0) (2025-01-27)
 
 
