@@ -12,6 +12,7 @@ import { Space } from "antd";
 import { ProportionalSlider } from "./actuators/ui/proportionalSlider";
 import { ActuatorSwitch } from "./actuators/ui/actuatorSwitches";
 import { FlowmeterWidgets } from "./sensors/ui/flowmeterWidgets";
+import { HandleAllButtons } from "./actuators/ui/handleAllButtons";
 
 export default function Page() {
   console.debug("Actuators Page");
@@ -59,9 +60,15 @@ export default function Page() {
       <FlowmeterWidgets />
 
       {/* Solenoid Valves Section */}
-      <h2>
-        <span className="material-symbols-outlined">valve</span> Solenoid Valves
-      </h2>
+      <div>
+        <Space wrap direction="horizontal" align="baseline" size={"large"}>
+          <h2>
+            <span className="material-symbols-outlined">valve</span> Solenoid
+            Valves
+          </h2>
+          <HandleAllButtons />
+        </Space>
+      </div>
       {solenoidValves && solenoidValves.length > 0 && (
         <Space size={"large"} wrap>
           {solenoidValves.map((solenoid) => (
