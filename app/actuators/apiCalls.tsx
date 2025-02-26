@@ -2,6 +2,7 @@
 import {
   client,
   getAllActuatorsV1ActuatorsGet,
+  getAllV1ActuatorsSolenoidGet,
   getAllV1SensorsFlowmetersGet,
   setStateV1ActuatorsProportionalSetPost,
   setStateV1ActuatorsPumpSetPost,
@@ -57,6 +58,7 @@ export async function handlePumpChange(id: number, checked: boolean) {
   });
   console.debug("Server Response: \n" + JSON.stringify(response.data));
 }
+
 export async function getActuatorsList() {
   console.trace("Fetch Actuators from " + process.env.BACKEND_URI);
   try {
@@ -72,6 +74,27 @@ export async function getActuatorsList() {
     const actuators = response.data ? response.data : [];
     console.debug("Got Actuators List:\n" + JSON.stringify(actuators));
     return actuators;
+  } catch (error) {
+    console.error("Unexpected error while fetching actuators: ", error);
+    return [];
+  }
+}
+
+export async function getSolenoidsList() {
+  console.trace("Fetch Solenoids from " + process.env.BACKEND_URI);
+  try {
+    const response = await getAllV1ActuatorsSolenoidGet();
+    console.debug("Solenoids Request: \n" + JSON.stringify(response.config));
+    console.trace("Server Response Status: " + response.status);
+
+    if (response.error) {
+      console.error("Error fetching solenoids: ", response.error);
+      return [];
+    }
+
+    const solenoids = response.data ? response.data : [];
+    console.debug("Got Solenoids List:\n" + JSON.stringify(solenoids));
+    return solenoids;
   } catch (error) {
     console.error("Unexpected error while fetching actuators: ", error);
     return [];
