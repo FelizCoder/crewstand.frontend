@@ -1,14 +1,22 @@
 "use server";
 
 import {
+  addToQueueV1MissionsFlowQueuePost,
   client,
+  FlowControlMission,
   postSetpointV1SensorsFlowmetersSensorIdSetpointPost,
+  TrajectoryPoint,
 } from "../api";
 
 client.setConfig({
   baseURL: process.env.BACKEND_URI,
   proxy: false,
 });
+
+export interface TrajectoryItem {
+  time: number;
+  flow: number;
+}
 
 export async function handleSetpointChange(
   setpoint: number | null,
@@ -24,4 +32,26 @@ export async function handleSetpointChange(
       return response.data;
     }
   });
+}
+export async function queueMission(
+  valveId: number,
+  flowTrajectoryItems: TrajectoryItem[]
+) {
+  const flowTrajectoryPoints: TrajectoryPoint[] = flowTrajectoryItems.map(
+    (item) => [item.time, item.flow]
+  );
+  const mission: FlowControlMission = {
+    valve_id: valveId,
+    flow_trajectory: flowTrajectoryPoints,
+  };
+  console.log("Mission:", mission);
+
+  addToQueueV1MissionsFlowQueuePost({ body: mission })
+    .then(() => {
+      console.log("Mission queued successfully!");
+    })
+    .catch((error) => {
+      console.error("Failed to queue mission. Please check the inputs.");
+      console.error("Error:", error);
+    });
 }

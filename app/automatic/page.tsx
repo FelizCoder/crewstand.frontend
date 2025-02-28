@@ -16,16 +16,6 @@ export default function Page() {
     SolenoidValve[] | undefined
   >(undefined);
 
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
-  const showDrawer = () => {
-    setDrawerOpen(true);
-  };
-
-  const onDrawerClose = () => {
-    setDrawerOpen(false);
-  };
-
   async function listSolenoids() {
     console.debug("Fetching Actuators");
     const solenoids = await getSolenoidsList();
@@ -82,7 +72,7 @@ export default function Page() {
               <span className="material-symbols-outlined">play_arrow</span>{" "}
               Current Setpoint
             </h2>
-            <QueueMissionButton />
+            {solenoidValves && <QueueMissionButton valves={solenoidValves} />}
           </Space>
         </div>
 
