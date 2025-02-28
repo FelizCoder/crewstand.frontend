@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.4.0...v1.5.0) (2025-02-28)
+
+
+### Features
+
+* **api:** add flow mission management endpoints and types ([7bc5df2](https://github.com/FelizCoder/crewstand.frontend/commit/7bc5df2c216feaf7273bf39e559fcfac897a56ed))
+* **automatic:** Enhance Automatic Page with Solenoid Valves and Queue Mission Button ([ea74f44](https://github.com/FelizCoder/crewstand.frontend/commit/ea74f44a6bb7ce21618c0a7a6197a181e5b3f618))
+* **queue mission:** add mission queueing functionality with trajectory control ([d480674](https://github.com/FelizCoder/crewstand.frontend/commit/d480674f5b850762a15788a54d1187a0c5731ccd)), closes [#37](https://github.com/FelizCoder/crewstand.frontend/issues/37)
+* **queueMissionDrawer:** Introduce Skeleton for Queue Mission Drawer Component ([1485d50](https://github.com/FelizCoder/crewstand.frontend/commit/1485d50cbe98c2c798c06a76c028104e7b6d1352)), closes [#37](https://github.com/FelizCoder/crewstand.frontend/issues/37)
+
 ## [1.4.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.3.0...v1.4.0) (2025-02-20)
 
 
