@@ -1,7 +1,13 @@
 import { Button, Drawer } from "antd";
 import { useState } from "react";
+import QueueMissionForm from "./queueMissionForm";
+import { SolenoidValve } from "../api";
 
-export function QueueMissionButton() {
+interface QueueMissionButtonProps {
+  valves: SolenoidValve[];
+}
+
+export function QueueMissionButton({valves}: QueueMissionButtonProps) {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
   const showDrawer = () => {
@@ -23,7 +29,7 @@ export function QueueMissionButton() {
         open={drawerOpen}
         onClose={onDrawerClose}
       >
-        Foo
+        <QueueMissionForm valves={valves}/>
       </Drawer>
     </>
   );
