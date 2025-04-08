@@ -46,7 +46,7 @@ export async function queueMission(
   };
   console.log("Mission:", mission);
 
-  addToQueueV1MissionsFlowQueuePost({ body: mission })
+  addToQueueV1MissionsFlowQueuePost({ body: [mission] })
     .then(() => {
       console.log("Mission queued successfully!");
     })
