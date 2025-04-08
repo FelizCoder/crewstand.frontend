@@ -9,6 +9,7 @@ import { ActuatorSwitch } from "../actuators/ui/actuatorSwitches";
 import { SolenoidValve } from "../api";
 import { getSolenoidsList } from "../actuators/apiCalls";
 import { QueueMissionButton } from "./queueMissionDrawer";
+import { HandleMissionActivityButtons } from "./handleMissionActivityButtons";
 
 export default function Page() {
   const [hostname, setHostname] = useState<string | undefined>(undefined);
@@ -32,6 +33,7 @@ export default function Page() {
     <div>
       <div>
         <h1>Flow Control Page</h1>
+        <HandleMissionActivityButtons />
         {/* Flowmeter Value */}
         <h2>
           <span className="material-symbols-outlined">gas_meter</span>{" "}
