@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.6.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.5.0...v1.6.0) (2025-04-08)
+
+
+### Features
+
+* add mission execution control UI and API handling ([b4946e5](https://github.com/FelizCoder/crewstand.frontend/commit/b4946e511abb26669dea1d89b5c71128136c5057))
+* add mission status endpoints ([789a519](https://github.com/FelizCoder/crewstand.frontend/commit/789a51911926057fddd868a569c6194fe57916df))
+* **api-types:** Enhance FlowControlMission type with new properties & update AddToQueue post data ([8035747](https://github.com/FelizCoder/crewstand.frontend/commit/8035747f670b8231ba6a8f27ed7dfe49bcfd3d88)), closes [#44](https://github.com/FelizCoder/crewstand.frontend/issues/44)
+
+
+### Bug Fixes
+
+* Update addToQueueV1MissionsFlowQueuePost to accept array payload ([6d1590e](https://github.com/FelizCoder/crewstand.frontend/commit/6d1590e0866e5cabc596d12b1db21a533275e732)), closes [#44](https://github.com/FelizCoder/crewstand.frontend/issues/44)
+
 ## [1.5.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.4.0...v1.5.0) (2025-02-28)
 
 
