@@ -6,6 +6,8 @@ import {
   FlowControlMission,
   postSetpointV1SensorsFlowmetersSensorIdSetpointPost,
   TrajectoryPoint,
+  setActiveV1MissionsFlowActivePost,
+  SetActiveV1MissionsFlowActivePostData
 } from "../api";
 
 client.setConfig({
@@ -54,4 +56,8 @@ export async function queueMission(
       console.error("Failed to queue mission. Please check the inputs.");
       console.error("Error:", error);
     });
+}
+
+export async function setMissionServiceActive(active: boolean) {
+  setActiveV1MissionsFlowActivePost({query: {mission: active} })
 }

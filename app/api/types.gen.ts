@@ -578,6 +578,47 @@ export type GetQueueLengthV1MissionsFlowQueueLengthGetResponses = {
 
 export type GetQueueLengthV1MissionsFlowQueueLengthGetResponse = GetQueueLengthV1MissionsFlowQueueLengthGetResponses[keyof GetQueueLengthV1MissionsFlowQueueLengthGetResponses];
 
+export type GetActiveV1MissionsFlowActiveGetData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/missions/flow/active';
+};
+
+export type GetActiveV1MissionsFlowActiveGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: boolean;
+};
+
+export type GetActiveV1MissionsFlowActiveGetResponse = GetActiveV1MissionsFlowActiveGetResponses[keyof GetActiveV1MissionsFlowActiveGetResponses];
+
+export type SetActiveV1MissionsFlowActivePostData = {
+    body?: never;
+    path?: never;
+    query: {
+        active: boolean;
+    };
+    url: '/v1/missions/flow/active';
+};
+
+export type SetActiveV1MissionsFlowActivePostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type SetActiveV1MissionsFlowActivePostError = SetActiveV1MissionsFlowActivePostErrors[keyof SetActiveV1MissionsFlowActivePostErrors];
+
+export type SetActiveV1MissionsFlowActivePostResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
+
 export type RootGetData = {
     body?: never;
     path?: never;
