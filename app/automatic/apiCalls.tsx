@@ -7,7 +7,6 @@ import {
   postSetpointV1SensorsFlowmetersSensorIdSetpointPost,
   TrajectoryPoint,
   setActiveV1MissionsFlowActivePost,
-  SetActiveV1MissionsFlowActivePostData
 } from "../api";
 
 client.setConfig({
@@ -59,5 +58,5 @@ export async function queueMission(
 }
 
 export async function setMissionServiceActive(active: boolean) {
-  setActiveV1MissionsFlowActivePost({query: {mission: active} })
+  setActiveV1MissionsFlowActivePost({ query: { active: active } });
 }
