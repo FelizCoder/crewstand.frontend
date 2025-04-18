@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { FlowmeterWidgets } from "../sensors/ui/flowmeterWidgets";
 import SetpointInput from "./setpointInput";
-import { Button, Drawer, Space } from "antd";
+import { Space } from "antd";
 import { HandleAllButtons } from "../actuators/ui/handleAllButtons";
 import { ActuatorSwitch } from "../actuators/ui/actuatorSwitches";
 import { SolenoidValve } from "../api";

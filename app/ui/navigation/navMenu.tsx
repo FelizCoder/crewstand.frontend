@@ -11,7 +11,8 @@ interface NavMenuProps {
 
 // Map of links to display in the side navigation.
 const routes = [
-  { name: "Home", href: "/", icon: "autoplay" },
+  { name: "Dashboard", href: "/", icon: "category" },
+  { name: "Manual Control", href: "/manual", icon: "autoplay" },
   {
     name: "Automatic Control",
     href: "/automatic",
