@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CompletedFlowControlMission } from "../../api";
+import { ClassifiedFlowControlMissionOutput } from "../../api";
 import useWebSocket from "../../hooks/useWebSocket";
 
 export interface MissionStatsProps {
@@ -23,7 +23,7 @@ export const MissionStats: React.FC<MissionStatsProps> = ({
   websocketHostname,
   missionRoute: sensorRoute,
 }) => {
-  const { data: mission, error } = useWebSocket<CompletedFlowControlMission>({
+  const { data: mission, error } = useWebSocket<ClassifiedFlowControlMissionOutput>({
     hostname: websocketHostname,
     route: sensorRoute,
   });

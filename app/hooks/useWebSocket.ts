@@ -35,7 +35,7 @@ const useWebSocket = <T>({
     const ws = new WebSocket(ws_url);
     
     ws.onopen = () => {
-      console.debug('WebSocket Connection Opened');
+      console.debug('WebSocket Connection Opened to', ws_url);
     };
     
     ws.onmessage = (event: WebSocketEventMap['message']) => {
