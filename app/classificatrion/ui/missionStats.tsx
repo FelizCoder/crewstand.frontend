@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ClassifiedFlowControlMissionOutput } from "../../api";
 import useWebSocket from "../../hooks/useWebSocket";
+import { Card, Table, Space } from "antd";
+import type { ColumnsType } from "antd/es/table";
 
 export interface MissionStatsProps {
   websocketHostname: string;
@@ -55,21 +57,59 @@ export const MissionStats: React.FC<MissionStatsProps> = ({
   if (!mission)
     return (
       <div>No classification available. Waiting for an Event to complete.</div>
-    ); // Just an example for handling absence of mission
+    );
+
+  const featureColumns: ColumnsType<any> = [
+    {
+      title: 'Feature',
+      dataIndex: 'feature',
+      key: 'feature',
+    },
+    {
+      title: 'Value',
+      dataIndex: 'value',
+      key: 'value',
+    },
+  ];
+
+  const featureData = Object.entries(mission.features).map(([key, value]) => ({
+    key,
+    feature: key,
+    value: typeof value === 'number' ? value.toFixed(3) : value,
+  }));
 
   return (
-    <div>
-      {/* Displaying rounded timestamps */}
+    <div style={{ width: '100%' }}>
       {startTimestamp && endTimestamp && (
-        <>
-          <div>
+        <div style={{ 
+          display: 'flex', 
+          gap: '16px', 
+          width: '100%',
+          flexWrap: 'wrap' 
+        }}>
+          <div style={{ 
+            flexGrow: 1,
+            minWidth: '300px',  // prevent too narrow iframe
+            flexBasis: '60%'    // try to take 60% width when possible
+          }}>
             <iframe
               src={`http://${websocketHostname}:3000/d/fej9lz2yz3sw0d/classification?folderUid=cej9lns9v9af4b&orgId=1&from=${startTimestamp}Z&to=${endTimestamp}Z&timezone=browser&viewPanel=panel-2&kiosk`}
-              height={250}
-              width="50%"
+              height={350}
+              width="100%"
+              style={{ border: 'none' }}
             />
           </div>
-        </>
+          <Card
+            title={`Classified as: ${mission.predicted_end_use}`}
+          >
+            <Table
+              columns={featureColumns}
+              dataSource={featureData}
+              pagination={false}
+              size="small"
+            />
+          </Card>
+        </div>
       )}
     </div>
   );
