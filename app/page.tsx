@@ -17,7 +17,7 @@ export default function Page() {
       {hostname && (
         <div>
           <MissionStats
-            missionRoute="/v1/missions/flow/completed"
+            missionRoute="/v1/missions/flow/classified"
             websocketHostname={hostname}
           />
         </div>
