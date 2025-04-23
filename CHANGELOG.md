@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.7.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.6.0...v1.7.0) (2025-04-23)
+
+
+### Features
+
+* add CompletedMissionType ([6d0760f](https://github.com/FelizCoder/crewstand.frontend/commit/6d0760fcdf33432fd1852bd8db485b7cdcc5e517))
+* add dashboard landing page ([96d0dc3](https://github.com/FelizCoder/crewstand.frontend/commit/96d0dc36ea0ea42eae037958212d62501583df9c)), closes [#40](https://github.com/FelizCoder/crewstand.frontend/issues/40)
+* add MissionStats component to Crewstand Dashboard ([8c82aa0](https://github.com/FelizCoder/crewstand.frontend/commit/8c82aa0b6f5d55135cc0176f88a566de8e562783))
+* enhance MissionStats component with Ant Design Card and Table for feature display ([95ed39b](https://github.com/FelizCoder/crewstand.frontend/commit/95ed39b89be04938fad9870c618d521305c2ad11))
+* update mission classification types ([0e002f0](https://github.com/FelizCoder/crewstand.frontend/commit/0e002f0dc62953e79f0aa82a53a528686230e5ad)), closes [#40](https://github.com/FelizCoder/crewstand.frontend/issues/40)
+
 ## [1.6.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.5.0...v1.6.0) (2025-04-08)
 
 
