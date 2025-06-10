@@ -1,0 +1,595 @@
+[
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 5.04457257282742],
+      [20.0, 11.6628793243574],
+      [30.0, 10.8955309669523],
+      [40.0, 8.09881713586291]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "00:09:30"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 8.40815449404922],
+      [10.0, 9.16056205503796],
+      [15.0, 9.16056205503796],
+      [20.0, 7.43002466476385],
+      [25.0, 3.167165577037],
+      [30.0, 3.167165577037],
+      [35.0, 3.167165577037]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "00:26:20"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 3.6384]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "00:47:40"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 2.90654694722318],
+      [10.0, 7.39952069679199],
+      [15.0, 7.39952069679199],
+      [20.0, 7.39952069679199],
+      [25.0, 7.39952069679199],
+      [30.0, 7.97968877199034],
+      [35.0, 5.1378162987237],
+      [40.0, 5.1378162987237],
+      [45.0, 5.1378162987237],
+      [50.0, 5.1378162987237],
+      [55.0, 5.1378162987237]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "01:01:10"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 2.84782349505417],
+      [10.0, 2.84782349505417],
+      [15.0, 2.84782349505417],
+      [20.0, 7.25002185586434],
+      [25.0, 7.25002185586434],
+      [30.0, 7.81846829957607],
+      [35.0, 7.81846829957607],
+      [40.0, 7.81846829957607],
+      [45.0, 7.81846829957607],
+      [50.0, 5.03401260480452]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "02:10:10"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 4.8998977453883],
+      [20.0, 6.34671794579823],
+      [30.0, 6.34671794579823],
+      [40.0, 6.34671794579823],
+      [50.0, 5.98790653609656],
+      [60.0, 3.95464188112046]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "04:46:50"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 14.1007083333333],
+      [20.0, 12.5261483333333],
+      [30.0, 5.66394333333334]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "04:55:30"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 5.01318097247531],
+      [10.0, 6.4934509446629],
+      [15.0, 6.4934509446629],
+      [20.0, 6.4934509446629],
+      [25.0, 6.4934509446629],
+      [30.0, 6.12634399156037],
+      [35.0, 4.04607125731273]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "05:36:30"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 3.14596153281456],
+      [10.0, 3.14596153281456],
+      [15.0, 8.00902510644545],
+      [20.0, 8.00902510644545],
+      [25.0, 8.63698208779915],
+      [30.0, 5.56102231684041],
+      [35.0, 5.56102231684041]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "05:57:50"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 1.88286135033173],
+      [20.0, 1.88286135033173],
+      [30.0, 0.978633516326265],
+      [40.0, 1.26622189150514],
+      [50.0, 1.26622189150514]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "06:24:40"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 4.09150105570895],
+      [20.0, 10.4161905148611],
+      [30.0, 11.2328841156407],
+      [40.0, 7.23242431378919]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "06:58:40"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 10.9914306818182],
+      [20.0, 10.9580220779221],
+      [30.0, 10.5039687795159],
+      [40.0, 8.70597846074381]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "07:04:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 1.8192]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "07:18:50"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 5.49458833333333],
+      [20.0, 5.68762333333334],
+      [30.0, 6.10018833333333]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "07:29:20"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 6.10489674418605],
+      [20.0, 14.1143125581395],
+      [30.0, 13.1856744186046],
+      [40.0, 9.80111627906976]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "09:07:00"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 1.56772833333333],
+      [20.0, 2.05044085494361],
+      [30.0, 2.06683081172306]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "09:09:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 2.05044085494361],
+      [20.0, 2.06683081172306]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "09:09:20"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 13.5433666666667],
+      [20.0, 16.3821166666667],
+      [30.0, 11.6887166666667]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "09:13:30"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 4.83386913322302],
+      [20.0, 4.83841224331064],
+      [30.0, 5.00408432450569],
+      [40.0, 5.02505834941018],
+      [50.0, 5.04020204970223],
+      [60.0, 5.04777389984825]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "09:15:20"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [5.0, 14.8774688636364],
+      [10.0, 13.2340906818182],
+      [15.0, 13.2340906818182],
+      [20.0, 13.2340906818182],
+      [25.0, 13.7567647727273],
+      [30.0, 13.7567647727273],
+      [35.0, 13.7567647727273],
+      [40.0, 13.7567647727273]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "09:39:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 1.137]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "09:56:40"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 1.8192]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "11:36:50"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 6.25131187163702],
+      [20.0, 13.5019094478647],
+      [30.0, 10.0361786804983]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "12:31:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 1.137]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "12:37:30"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 8.93392256796594],
+      [20.0, 8.9067677881241],
+      [30.0, 8.53770964390996]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "13:31:40"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 1.31652631578947],
+      [20.0, 1.18487368421053]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "14:57:50"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 7.96747603833866],
+      [20.0, 7.96747603833866],
+      [30.0, 7.96747603833867],
+      [40.0, 7.51703514376997],
+      [50.0, 4.96453674121404]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "15:04:30"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 3.3860698392074],
+      [20.0, 8.62029559850576],
+      [30.0, 9.29617995777165],
+      [40.0, 5.98545460451519]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "15:19:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 1.52784375],
+      [20.0, 1.88315625]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "15:38:20"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 1.10655042735043],
+      [20.0, 2.63032478632479],
+      [30.0, 2.63032478632479]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "16:45:50"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 2.14989727126806],
+      [20.0, 4.72521133487437]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "16:50:50"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 4.72521133487437],
+      [20.0, 2.84729665879176],
+      [30.0, 2.55719473506581]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "16:51:00"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 0.6822]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "17:05:10"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 9.7125815],
+      [10.0, 9.7125815],
+      [15.0, 9.7125815],
+      [20.0, 18.3113445],
+      [25.0, 18.3113445],
+      [30.0, 18.3113445],
+      [35.0, 18.3113445],
+      [40.0, 17.3143755],
+      [45.0, 17.3143755],
+      [50.0, 13.6807755],
+      [55.0, 13.6807755],
+      [60.0, 13.6807755]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "18:03:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 2.85632833333333],
+      [20.0, 2.85632833333333],
+      [30.0, 2.70114333333333]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "18:14:40"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 7.34089164769323],
+      [10.0, 7.34089164769323],
+      [15.0, 7.99779470341522],
+      [20.0, 6.48691767525464],
+      [25.0, 6.48691767525464],
+      [30.0, 6.48691767525464],
+      [35.0, 6.48691767525464],
+      [40.0, 2.76515130017975]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "18:17:30"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 3.17181416666667],
+      [20.0, 3.17181416666667],
+      [30.0, 3.66197166666667]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "18:43:10"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 4.09310296564967],
+      [20.0, 4.31479411137189],
+      [30.0, 4.31479411137188],
+      [40.0, 4.31479411137188],
+      [50.0, 3.88331470023469]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "19:05:00"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 4.019434],
+      [20.0, 4.5095915],
+      [30.0, 4.5095915],
+      [40.0, 4.5095915],
+      [50.0, 4.5095915]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "19:14:30"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 2.8805408208073],
+      [20.0, 2.3496591791927]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "19:17:40"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 7.40507692307693],
+      [20.0, 9.59161538461539],
+      [30.0, 9.59161538461539],
+      [40.0, 9.04935384615385],
+      [50.0, 5.97653846153845]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "19:43:20"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 9.42813823232324],
+      [10.0, 13.2434182323232],
+      [15.0, 13.2434182323232],
+      [20.0, 13.2434182323232],
+      [25.0, 13.2434182323232],
+      [30.0, 13.2055682323232],
+      [35.0, 12.6911523232323],
+      [40.0, 10.6541341414141],
+      [45.0, 10.6541341414141]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "19:49:10"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 8.15208499999999],
+      [20.0, 17.092255],
+      [30.0, 18.24668],
+      [40.0, 12.59189],
+      [50.0, 12.59189]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "20:22:50"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 1.3644]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "20:31:50"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [3.3333333333333335, 3.1241523861595],
+      [6.666666666666667, 4.04663832695462],
+      [10.0, 4.04663832695462],
+      [13.333333333333334, 4.04663832695462],
+      [16.666666666666668, 4.04663832695462],
+      [20.0, 4.04663832695462],
+      [23.333333333333336, 4.04663832695462],
+      [26.666666666666668, 3.81786181363743],
+      [30.0, 3.81786181363743],
+      [33.333333333333336, 3.81786181363743],
+      [36.66666666666667, 3.81786181363743],
+      [40.0, 3.81786181363743],
+      [43.333333333333336, 3.81786181363743],
+      [46.66666666666667, 3.81786181363743],
+      [50.0, 3.81786181363743],
+      [53.333333333333336, 2.52146157150667],
+      [56.66666666666667, 2.52146157150667]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 3,
+    "actual_start_time": "21:21:30"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [[10.0, 2.0466]],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "21:22:20"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [10.0, 17.187625],
+      [20.0, 17.149775]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "22:01:00"
+  },
+  {
+    "valve_id": 1,
+    "flow_trajectory": [
+      [5.0, 5.29106167458322],
+      [10.0, 7.62821775169973],
+      [15.0, 7.62821775169973],
+      [20.0, 7.60503167950612],
+      [25.0, 7.2899118801474],
+      [30.0, 6.04207963118189],
+      [35.0, 6.04207963118189]
+    ],
+    "actual_end_use": "Toilet",
+    "duration_scaling_factor": 2,
+    "actual_start_time": "22:28:50"
+  },
+  {
+    "valve_id": 0,
+    "flow_trajectory": [
+      [10.0, 0.675797530254384],
+      [20.0, 0.916002469745616]
+    ],
+    "actual_end_use": "Faucet",
+    "duration_scaling_factor": 1,
+    "actual_start_time": "22:35:30"
+  }
+]
