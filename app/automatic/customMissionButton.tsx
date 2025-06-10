@@ -3,11 +3,11 @@ import { useState } from "react";
 import QueueMissionForm from "./queueMissionForm";
 import { SolenoidValve } from "../api";
 
-interface QueueMissionButtonProps {
+interface CustomMissionButtonProps {
   valves: SolenoidValve[];
 }
 
-export function QueueMissionButton({valves}: QueueMissionButtonProps) {
+export function CustomMissionButton({valves}: CustomMissionButtonProps) {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
   const showDrawer = () => {
@@ -20,7 +20,7 @@ export function QueueMissionButton({valves}: QueueMissionButtonProps) {
   return (
     <>
       <Button type="primary" onClick={showDrawer}>
-        Queue Mission
+        <span className="material-symbols-outlined">summarize</span> Custom Mission
       </Button>
 
       <Drawer

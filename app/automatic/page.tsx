@@ -8,8 +8,9 @@ import { HandleAllButtons } from "../actuators/ui/handleAllButtons";
 import { ActuatorSwitch } from "../actuators/ui/actuatorSwitches";
 import { SolenoidValve } from "../api";
 import { getSolenoidsList } from "../actuators/apiCalls";
-import { QueueMissionButton } from "./queueMissionDrawer";
+import { CustomMissionButton } from "./customMissionButton";
 import { HandleMissionActivityButtons } from "./handleMissionActivityButtons";
+import { BalancedTestMissionButton } from "./balancedTestMissionButton";
 
 export default function Page() {
   const [hostname, setHostname] = useState<string | undefined>(undefined);
@@ -34,6 +35,14 @@ export default function Page() {
       <div>
         <h1>Flow Control Page</h1>
         <HandleMissionActivityButtons />
+        <h2>
+          <span className="material-symbols-outlined">queue_play_next</span> Add
+          to Mission Queue
+        </h2>
+        <Space wrap direction="horizontal" size={"large"}>
+          {solenoidValves && <CustomMissionButton valves={solenoidValves} />}
+          <BalancedTestMissionButton />
+        </Space>
         {/* Flowmeter Value */}
         <h2>
           <span className="material-symbols-outlined">gas_meter</span>{" "}
@@ -74,7 +83,6 @@ export default function Page() {
               <span className="material-symbols-outlined">play_arrow</span>{" "}
               Current Setpoint
             </h2>
-            {solenoidValves && <QueueMissionButton valves={solenoidValves} />}
           </Space>
         </div>
 

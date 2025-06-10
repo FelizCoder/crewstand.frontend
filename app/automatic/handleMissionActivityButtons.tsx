@@ -11,14 +11,14 @@ export const HandleMissionActivityButtons = () => {
           color="danger"
           onClick={() => setMissionServiceActive(false)}
         >
-          Stop Mission Execution
+          Pause Mission Execution
         </Button>
         <Button
           variant="solid"
           color="blue"
           onClick={() => setMissionServiceActive(true)}
         >
-          Start Mission Execution
+          Continue Mission Execution
         </Button>
       </Flex>
     </>
