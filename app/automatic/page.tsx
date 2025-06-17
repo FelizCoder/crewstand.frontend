@@ -11,6 +11,7 @@ import { getSolenoidsList } from "../actuators/apiCalls";
 import { CustomMissionButton } from "./customMissionButton";
 import { HandleMissionActivityButtons } from "./handleMissionActivityButtons";
 import { BalancedTestMissionButton } from "./balancedTestMissionButton";
+import { RandomDayMissionButton } from "./randomDayMissionButton";
 
 export default function Page() {
   const [hostname, setHostname] = useState<string | undefined>(undefined);
@@ -42,6 +43,7 @@ export default function Page() {
         <Space wrap direction="horizontal" size={"large"}>
           {solenoidValves && <CustomMissionButton valves={solenoidValves} />}
           <BalancedTestMissionButton />
+          <RandomDayMissionButton />
         </Space>
         {/* Flowmeter Value */}
         <h2>
