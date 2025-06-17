@@ -1,6 +1,7 @@
 "use server";
 
-import { json } from "stream/consumers";
+import fs from 'fs';
+import path from 'path';
 import {
   addToQueueV1MissionsFlowQueuePost,
   client,
@@ -75,7 +76,42 @@ export async function queueBalancedTestMission() {
 }
 
 export async function queueRandomDayMission() {
-  
+  try {
+    // Get the directory path for day trajectories
+    const dirPath = path.join(process.cwd(), 'app/missions/dayTrajectories');
+    
+    // Read all files in the directory
+    const files = fs.readdirSync(dirPath).filter(file => 
+      file.endsWith('.json') && fs.statSync(path.join(dirPath, file)).isFile()
+    );
+    
+    if (files.length === 0) {
+      console.error("No trajectory files found in dayTrajectories directory");
+      return;
+    }
+    
+    // Select a random trajectory file
+    const randomIndex = Math.floor(Math.random() * files.length);
+    const randomTrajectory = files[randomIndex];
+    
+    console.debug(`Selected random day trajectory: ${randomTrajectory}`);
+    
+    // Load the trajectory file
+    const missionQueue = (await import(`../missions/dayTrajectories/${randomTrajectory}`))
+      .default as unknown as FlowControlMission[];
+      
+    // Queue the mission
+    addToQueueV1MissionsFlowQueuePost({ body: missionQueue })
+      .then(() => {
+        console.debug(`Random day mission (${randomTrajectory}) queued successfully!`);
+      })
+      .catch((error) => {
+        console.error("Failed to queue random day mission. Please check the inputs.");
+        console.error("Error: ", error);
+      });
+  } catch (error) {
+    console.error("Error loading random day trajectory:", error);
+  }
 }
 
 export async function setMissionServiceActive(active: boolean) {
