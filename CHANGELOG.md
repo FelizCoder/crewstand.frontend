@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.7.0...v1.8.0) (2025-06-19)
+
+
+### Features
+
+* add `BalancedTestMissionsButton` ([b4dca26](https://github.com/FelizCoder/crewstand.frontend/commit/b4dca265b60180b2fe52cc32f49bd67216d4ae9c))
+* add `RandomDayMissionButton` ([db86934](https://github.com/FelizCoder/crewstand.frontend/commit/db86934c83b6a7675803e8b9b5035fa137ad56f4))
+
 ## [1.7.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.6.0...v1.7.0) (2025-04-23)
 
 
