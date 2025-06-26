@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.8.0",
+  "version": "1.9.0",
   "scripts": {
     "dev": "next --port 4000",
     "build": "next build",
