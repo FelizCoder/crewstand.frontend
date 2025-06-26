@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.8.0...v1.9.0) (2025-06-26)
+
+
+### Features
+
+* add fullscreen toggle functionality to NavLayout component ([bd8e0d5](https://github.com/FelizCoder/crewstand.frontend/commit/bd8e0d551fa3474d6595ec112e0e9ca2f0ceb9bc)), closes [#51](https://github.com/FelizCoder/crewstand.frontend/issues/51)
+
+
+### Bug Fixes
+
+* add dependency array on useEffect hook ([5675b72](https://github.com/FelizCoder/crewstand.frontend/commit/5675b72d7b1437d90237eb572158905376d52b65))
+
 ## [1.8.0](https://github.com/FelizCoder/crewstand.frontend/compare/v1.7.0...v1.8.0) (2025-06-19)
 
 
