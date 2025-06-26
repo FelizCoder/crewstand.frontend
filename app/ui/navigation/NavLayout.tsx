@@ -52,7 +52,7 @@ const NavLayout: React.FC<NavLayoutProps> = ({ children }) => {
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
-  });
+  }, []);
 
   return (
     <Layout>
